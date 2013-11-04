@@ -1,0 +1,54 @@
+<html>
+<head>
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
+<!--[if lte IE 8]>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.ie.css" />
+<![endif]-->
+<script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
+<script src="http://mlevans.github.com/leaflet-hash/javascripts/leaflet-hash.js"></script>
+<style type="text/css">
+body, #map {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-image: url(/images/transparent.png);
+}
+</style>
+</head>
+<body>
+<div id="map"></div>
+<script>
+  var map = L.map('map', {
+      scrollWheelZoom: false,
+      attributionControl: false,
+      keyboardPanOffset: 256
+  });
+
+  if (!location.hash) {
+    // provide a default location in the hash, not the L.map (since that will
+    // load before L.Hash takes control)
+    location.hash = "#13/37.8/-122.4";
+  }
+
+  new L.Hash(map);
+
+  var options = {
+    maxZoom: 20 // TODO load this (and minZoom) from project.mml if available
+  }
+  var provider = "{z}/{x}/{y}.png";
+
+  var mediaQuery = "(-webkit-min-device-pixel-ratio: 1.5),\
+                    (min--moz-device-pixel-ratio: 1.5),\
+                    (-o-min-device-pixel-ratio: 3/2),\
+                    (min-resolution: 1.5dppx)";
+  if (window.devicePixelRatio > 1 ||
+      (window.matchMedia && window.matchMedia(mediaQuery).matches)) {
+    provider = "{z}/{x}/{y}@2x.png";
+    options.tileSize = 512;
+    options.zoomOffset = -1;
+  }
+
+  L.tileLayer(provider, options).addTo(map);
+</script>
+</body>
+</html>
