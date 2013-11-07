@@ -37,6 +37,7 @@ body, #map {
   }
   var provider = "{z}/{x}/{y}.png";
 
+  /*
   var mediaQuery = "(-webkit-min-device-pixel-ratio: 1.5),\
                     (min--moz-device-pixel-ratio: 1.5),\
                     (-o-min-device-pixel-ratio: 3/2),\
@@ -47,6 +48,7 @@ body, #map {
     options.tileSize = 512;
     options.zoomOffset = -1;
   }
+  */
 
   L.tileLayer(provider, options).addTo(map);
 </script>
