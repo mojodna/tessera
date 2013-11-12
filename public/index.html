@@ -5,7 +5,11 @@
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.ie.css" />
 <![endif]-->
 <script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
+<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
 <script src="http://mlevans.github.com/leaflet-hash/javascripts/leaflet-hash.js"></script>
+<script src="js/l.control.geosearch.js"></script>
+<script src="js/l.geosearch.provider.google.js"></script>
+<link rel="stylesheet" href="css/l.geosearch.css">
 <style type="text/css">
 body, #map {
   height: 100%;
@@ -31,6 +35,10 @@ body, #map {
   }
 
   new L.Hash(map);
+  new L.Control.GeoSearch({
+    provider: new L.GeoSearch.Provider.Google(),
+    showMarker: false
+  }).addTo(map);
 
   var options = {
     maxZoom: 20 // TODO load this (and minZoom) from project.mml if available
