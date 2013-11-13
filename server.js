@@ -15,7 +15,7 @@ var _ = require("underscore"),
     tilelive = require("tilelive-cache")(require("tilelive"), {
       size: process.env.CACHE_SIZE || 10
     }),
-    MapBoxSource = require("tilelive-mapbox"),
+    MapBoxSource = require("tilelive-mapbox")(tilelive),
     Vector = require("tilelive-vector")(tilelive),
     yaml = require("js-yaml");
 
