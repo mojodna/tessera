@@ -2,7 +2,7 @@
 "use strict";
 
 // increase the libuv threadpool size to 1.5x the number of logical CPUs.
-process.env.UV_THREADPOOL_SIZE = Math.ceil(Math.max(4, require('os').cpus().length * 1.5));
+process.env.UV_THREADPOOL_SIZE = process.env.UV_THREADPOOL_SIZE || Math.ceil(Math.max(4, require('os').cpus().length * 1.5));
 
 var fs = require("fs"),
     path = require("path"),
