@@ -12,7 +12,9 @@ var _ = require("underscore"),
     async = require("async"),
     carto = require("carto"),
     express = require("express"),
-    tilelive = require("tilelive-cache"),
+    tilelive = require("tilelive-cache")(require("tilelive"), {
+      size: process.env.CACHE_SIZE || 10
+    }),
     MapBoxSource = require("tilelive-mapbox"),
     Vector = require("tilelive-vector")(tilelive),
     yaml = require("js-yaml");
