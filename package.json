@@ -8,12 +8,7 @@
   "license": "BSD-2-Clause",
   "dependencies": {
     "express": "~3.4.4",
-    "js-yaml": "~2.1.3",
-    "async": "~0.2.9",
-    "underscore": "~1.5.2",
     "tilelive": "~4.5.2",
-    "carto": "~0.9.5",
-    "tilelive-vector": "https://github.com/mojodna/tilelive-vector/tarball/tilelive-injection",
     "tilelive-cache": "https://github.com/mojodna/tilelive-cache/tarball/master",
     "tilelive-mapbox": "https://github.com/mojodna/tilelive-mapbox/tarball/master",
     "mbtiles": "~0.4.0",
