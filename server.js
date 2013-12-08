@@ -221,20 +221,20 @@ style.toXML = function(data, callback) {
 };
 
 style.registerProtocols = function(tilelive) {
-  tilelive.protocols["tm2:"] = this;
+  tilelive.protocols["tmstyle:"] = this;
 };
 
 style.registerProtocols(tilelive);
 
 // warm the cache
-tilelive.load("tm2://./project.yml");
+tilelive.load("tmstyle://./project.yml");
 
 app.get("/:z(\\d+)/:x(\\d+)/:y(\\d+).:format([\\w\\.]+)", function(req, res, next) {
   var z = +req.params.z,
       x = +req.params.x,
       y = +req.params.y;
 
-  return tilelive.load("tm2://./project.yml", function(err, source) {
+  return tilelive.load("tmstyle://./project.yml", function(err, source) {
     if (err) {
       return next(err);
     }
