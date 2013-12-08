@@ -19,6 +19,7 @@ require("mbtiles").registerProtocols(tilelive);
 
 var app = express();
 
+app.use(express.responseTime());
 app.use(cors());
 app.use(express.static(__dirname + "/public"));
 
