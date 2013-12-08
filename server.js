@@ -16,7 +16,6 @@ var _ = require("underscore"),
     tilelive = require("tilelive-cache")(require("tilelive"), {
       size: process.env.CACHE_SIZE || 10
     }),
-    MapBoxSource = require("tilelive-mapbox")(tilelive),
     Vector = require("tilelive-vector")(tilelive),
     yaml = require("js-yaml");
 
@@ -76,8 +75,6 @@ tm.sortkeys = function(obj) {
     }, {});
   } catch(e) { return obj };
 };
-
-MapBoxSource.registerProtocols(tilelive);
 
 var style = function(uri, callback) {
   uri = url.parse(uri || "");
