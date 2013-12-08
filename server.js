@@ -24,6 +24,7 @@ mbtiles.registerProtocols(tilelive);
 
 var app = express();
 
+// TODO CORS
 app.use(express.static(__dirname + "/public"));
 
 app.configure("development", function() {
