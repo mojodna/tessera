@@ -29,9 +29,9 @@ app.configure("development", function() {
 tilelive.load("tmstyle://./project.yml");
 
 app.get("/:z(\\d+)/:x(\\d+)/:y(\\d+).:format([\\w\\.]+)", function(req, res, next) {
-  var z = +req.params.z,
-      x = +req.params.x,
-      y = +req.params.y;
+  var z = req.params.z | 0,
+      x = req.params.x | 0,
+      y = req.params.y | 0;
 
   return tilelive.load("tmstyle://./project.yml", function(err, source) {
     if (err) {
