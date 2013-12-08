@@ -26,6 +26,10 @@ var app = express();
 
 app.use(express.static(__dirname + "/public"));
 
+app.configure("development", function() {
+  app.use(express.logger());
+});
+
 var defaults = {
   name:'',
   description:'',
