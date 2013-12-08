@@ -13,6 +13,7 @@
     "tilelive-mapbox": "https://github.com/mojodna/tilelive-mapbox/tarball/master",
     "mbtiles": "~0.4.0",
     "tilelive-bridge": "0.0.8",
-    "tilejson": "~0.6.0"
+    "tilejson": "~0.6.0",
+    "cors": "~2.1.0"
   }
 }
