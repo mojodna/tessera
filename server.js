@@ -12,12 +12,16 @@ var _ = require("underscore"),
     async = require("async"),
     carto = require("carto"),
     express = require("express"),
+    mbtiles = require("mbtiles"),
     tilelive = require("tilelive-cache")(require("tilelive"), {
       size: process.env.CACHE_SIZE || 10
     }),
     MapBoxSource = require("tilelive-mapbox")(tilelive),
     Vector = require("tilelive-vector")(tilelive),
     yaml = require("js-yaml");
+
+require("tilelive-mapbox")(tilelive);
+mbtiles.registerProtocols(tilelive);
 
 var app = express();
 
@@ -140,69 +144,75 @@ style.toXML = function(data, callback) {
   return tilelive.load(data.source, function(err, backend) {
     if (err) return callback(err);
 
-    // Include params to be written to XML.
-    var opts = [
-      'name',
-      'description',
-      'attribution',
-      'bounds',
-      'center',
-      'format',
-      'minzoom',
-      'maxzoom',
-      'scale',
-      'source',
-      'template',
-      'interactivity_layer',
-      'legend'
-    ].reduce(function(memo, key) {
-      if (key in data) {
-        switch(key) {
-        // @TODO this is backwards because carto currently only allows the
-        // TM1 abstrated representation of these params. Add support in
-        // carto for "literal" definition of these fields.
-        case 'interactivity_layer':
-          if (!backend.data) break;
-          if (!backend.data.vector_layers) break;
-          var fields = data.template.match(/{{([a-z0-9\-_]+)}}/ig);
-          if (!fields) break;
-          memo['interactivity'] = {
-              layer: data[key],
-              fields: fields.map(function(t) { return t.replace(/[{}]+/g,''); })
-          };
-          break;
-        default:
-          memo[key] = data[key];
-          break;
+    return backend.getInfo(function(err, info) {
+      if (err) return callback(err);
+
+      backend.data = info;
+
+      // Include params to be written to XML.
+      var opts = [
+        'name',
+        'description',
+        'attribution',
+        'bounds',
+        'center',
+        'format',
+        'minzoom',
+        'maxzoom',
+        'scale',
+        'source',
+        'template',
+        'interactivity_layer',
+        'legend'
+      ].reduce(function(memo, key) {
+        if (key in data) {
+          switch(key) {
+          // @TODO this is backwards because carto currently only allows the
+          // TM1 abstrated representation of these params. Add support in
+          // carto for "literal" definition of these fields.
+          case 'interactivity_layer':
+            if (!backend.data) break;
+            if (!backend.data.vector_layers) break;
+            var fields = data.template.match(/{{([a-z0-9\-_]+)}}/ig);
+            if (!fields) break;
+            memo['interactivity'] = {
+                layer: data[key],
+                fields: fields.map(function(t) { return t.replace(/[{}]+/g,''); })
+            };
+            break;
+          default:
+            memo[key] = data[key];
+            break;
+          }
         }
-      }
-      return memo;
-    }, {});
+        return memo;
+      }, {});
 
-    // Set projection for Mapnik.
-    opts.srs = tm.srs['900913'];
+      // Set projection for Mapnik.
+      opts.srs = tm.srs['900913'];
 
-    // Convert datatiles sources to mml layers.
-    opts.Layer = _(backend.data.vector_layers).map(function(layer) {
-      return {
-        id: layer.id,
-        name: layer.id,
-        // Styles can provide a hidden _properties key with
-        // layer-specific property overrides. Current workaround to layer
-        // properties that could (?) eventually be controlled via carto.
-        properties: (data._properties && data._properties[layer.id]) || {},
-        srs: tm.srs['900913']
-      };
+      // Convert datatiles sources to mml layers.
+      opts.Layer = _(backend.data.vector_layers).map(function(layer) {
+        return {
+          id: layer.id,
+          name: layer.id,
+          // Styles can provide a hidden _properties key with
+          // layer-specific property overrides. Current workaround to layer
+          // properties that could (?) eventually be controlled via carto.
+          properties: (data._properties && data._properties[layer.id]) || {},
+          srs: tm.srs['900913']
+        };
+      });
+
+      opts.Stylesheet = _(data.styles).map(function(style,basename) {
+        return {
+          id: basename,
+          data: style
+        };
+      });
+
+      new carto.Renderer().render(tm.sortkeys(opts), callback);
     });
-
-    opts.Stylesheet = _(data.styles).map(function(style,basename) {
-      return {
-        id: basename,
-        data: style
-      };
-    });
-
-    new carto.Renderer().render(tm.sortkeys(opts), callback);
   });
 };
 

@@ -15,6 +15,7 @@
     "carto": "~0.9.5",
     "tilelive-vector": "https://github.com/mojodna/tilelive-vector/tarball/tilelive-injection",
     "tilelive-cache": "https://github.com/mojodna/tilelive-cache/tarball/master",
-    "tilelive-mapbox": "https://github.com/mojodna/tilelive-mapbox/tarball/master"
+    "tilelive-mapbox": "https://github.com/mojodna/tilelive-mapbox/tarball/master",
+    "mbtiles": "~0.4.0"
   }
 }
