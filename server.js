@@ -12,7 +12,9 @@ var cors = require("cors"),
 
 require("tilejson").registerProtocols(tilelive);
 require("tilelive-bridge").registerProtocols(tilelive);
+require("tilelive-http").registerProtocols(tilelive);
 require("tilelive-mapbox")(tilelive);
+require("tilelive-mapnik").registerProtocols(tilelive);
 require("tilelive-tmsource")(tilelive);
 require("tilelive-tmstyle")(tilelive);
 require("mbtiles").registerProtocols(tilelive);

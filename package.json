@@ -14,6 +14,8 @@
     "mbtiles": "~0.4.0",
     "tilelive-bridge": "0.0.8",
     "tilejson": "~0.6.0",
-    "cors": "~2.1.0"
+    "cors": "~2.1.0",
+    "tilelive-http": "git://github.com/mojodna/tilelive-http.git",
+    "tilelive-mapnik": "~0.6.4"
   }
 }
