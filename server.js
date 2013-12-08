@@ -12,15 +12,17 @@ var _ = require("underscore"),
     async = require("async"),
     carto = require("carto"),
     express = require("express"),
-    mbtiles = require("mbtiles"),
     tilelive = require("tilelive-cache")(require("tilelive"), {
       size: process.env.CACHE_SIZE || 10
     }),
     Vector = require("tilelive-vector")(tilelive),
     yaml = require("js-yaml");
 
+require("tilejson").registerProtocols(tilelive);
+require("tilelive-bridge").registerProtocols(tilelive);
 require("tilelive-mapbox")(tilelive);
-mbtiles.registerProtocols(tilelive);
+require("tilelive-tmsource")(tilelive);
+require("mbtiles").registerProtocols(tilelive);
 
 var app = express();
 
