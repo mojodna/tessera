@@ -31,15 +31,21 @@ app.configure("development", function() {
   app.use(express.logger());
 });
 
+var uri = "tmstyle://./project.yml";
+
 // warm the cache
-tilelive.load("tmstyle://./project.yml");
+tilelive.load(uri);
+
+// TODO TileJSON endpoint
+// TODO grids
+// TODO use TileJSON endpoint to initialize boilerplate viewer
 
 app.get("/:z(\\d+)/:x(\\d+)/:y(\\d+).:format([\\w\\.]+)", function(req, res, next) {
   var z = req.params.z | 0,
       x = req.params.x | 0,
       y = req.params.y | 0;
 
-  return tilelive.load("tmstyle://./project.yml", function(err, source) {
+  return tilelive.load(uri, function(err, source) {
     if (err) {
       return next(err);
     }
