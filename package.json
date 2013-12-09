@@ -10,12 +10,16 @@
     "express": "~3.4.4",
     "tilelive": "~4.5.2",
     "tilelive-cache": "https://github.com/mojodna/tilelive-cache/tarball/master",
+    "cors": "~2.1.0"
+  },
+  "optionalDependencies": {
     "tilelive-mapbox": "https://github.com/mojodna/tilelive-mapbox/tarball/master",
     "mbtiles": "~0.4.0",
     "tilelive-bridge": "0.0.8",
     "tilejson": "~0.6.0",
-    "cors": "~2.1.0",
     "tilelive-http": "git://github.com/mojodna/tilelive-http.git",
-    "tilelive-mapnik": "~0.6.4"
+    "tilelive-mapnik": "~0.6.4",
+    "tilelive-tmsource": "git://github.com/mojodna/tilelive-tmsource.git",
+    "tilelive-tmstyle": "git://github.com/mojodna/tilelive-tmstyle.git"
   }
 }

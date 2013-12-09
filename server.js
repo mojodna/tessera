@@ -10,14 +10,14 @@ var cors = require("cors"),
       size: process.env.CACHE_SIZE || 10
     });
 
-require("tilejson").registerProtocols(tilelive);
-require("tilelive-bridge").registerProtocols(tilelive);
-require("tilelive-http").registerProtocols(tilelive);
-require("tilelive-mapbox")(tilelive);
-require("tilelive-mapnik").registerProtocols(tilelive);
-require("tilelive-tmsource")(tilelive);
-require("tilelive-tmstyle")(tilelive);
-require("mbtiles").registerProtocols(tilelive);
+try { require("tilejson").registerProtocols(tilelive); } catch (e) {}
+try { require("tilelive-bridge").registerProtocols(tilelive); } catch (e) {}
+try { require("tilelive-http").registerProtocols(tilelive); } catch (e) {}
+try { require("tilelive-mapbox")(tilelive); } catch (e) {}
+try { require("tilelive-mapnik").registerProtocols(tilelive); } catch (e) {}
+try { require("tilelive-tmsource")(tilelive); } catch (e) {}
+try { require("tilelive-tmstyle")(tilelive); } catch (e) {}
+try { require("mbtiles").registerProtocols(tilelive); } catch (e) {}
 
 var app = express();
 
