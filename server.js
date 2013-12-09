@@ -40,7 +40,6 @@ console.log("URI:", uri);
 // warm the cache
 tilelive.load(uri);
 
-// TODO TileJSON endpoint
 // TODO grids
 // TODO use TileJSON endpoint to initialize boilerplate viewer
 
@@ -76,9 +75,32 @@ app.get("/index.json", function(req, res, next) {
         return next(err);
       }
 
-      info.tiles = [util.format("http://%s/{z}/{x}/{y}", req.headers.host)];
+      if (info.vector_layers) {
+        info.format = "pbf";
+      }
 
-      res.send(info);
+      info.bounds = info.bounds || [-180, -85.0511, 180, 85.0511];
+      info.format = info.format || (info.vector_layers ? "pbf" : null);
+      info.tilejson = "2.0.0";
+
+      var ext;
+
+      switch (info.format) {
+      case /^png/:
+        ext = "png";
+        break;
+
+      case "pbf":
+        ext = "vector.pbf";
+        break;
+
+      default:
+        return next(new Error("Unrecognized format: " + info.format));
+      }
+
+      info.tiles = [util.format("http://%s/{z}/{x}/{y}.%s", req.headers.host, ext)];
+
+      return res.send(info);
     });
   });
 });
