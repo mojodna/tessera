@@ -4,6 +4,8 @@
 // increase the libuv threadpool size to 1.5x the number of logical CPUs.
 process.env.UV_THREADPOOL_SIZE = process.env.UV_THREADPOOL_SIZE || Math.ceil(Math.max(4, require('os').cpus().length * 1.5));
 
+var util = require("util");
+
 var cors = require("cors"),
     express = require("express"),
     tilelive = require("tilelive-cache")(require("tilelive"), {
@@ -31,7 +33,9 @@ app.configure("development", function() {
   app.use(express.logger());
 });
 
-var uri = "tmstyle://./project.yml";
+var uri = process.argv.slice(2).pop() || "tmstyle://./project.yml";
+
+console.log("URI:", uri);
 
 // warm the cache
 tilelive.load(uri);
@@ -57,6 +61,24 @@ app.get("/:z(\\d+)/:x(\\d+)/:y(\\d+).:format([\\w\\.]+)", function(req, res, nex
 
       res.set(headers);
       return res.send(data);
+    });
+  });
+});
+
+app.get("/index.json", function(req, res, next) {
+  return tilelive.load(uri, function(err, source) {
+    if (err) {
+      return next(err);
+    }
+
+    return source.getInfo(function(err, info) {
+      if (err) {
+        return next(err);
+      }
+
+      info.tiles = [util.format("http://%s/{z}/{x}/{y}", req.headers.host)];
+
+      res.send(info);
     });
   });
 });
