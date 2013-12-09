@@ -16,7 +16,7 @@
     "tilelive-mapbox": "https://github.com/mojodna/tilelive-mapbox/tarball/master",
     "mbtiles": "~0.4.0",
     "tilelive-bridge": "0.0.8",
-    "tilejson": "~0.6.0",
+    "tilejson": "git://github.com/mojodna/node-tilejson.git#integration",
     "tilelive-http": "git://github.com/mojodna/tilelive-http.git",
     "tilelive-mapnik": "~0.6.4",
     "tilelive-tmsource": "git://github.com/mojodna/tilelive-tmsource.git",
