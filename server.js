@@ -68,8 +68,8 @@ var getInfo = function(source, callback) {
 
 // TODO a more complete implementation of this exists...somewhere
 var getExtension = function(format) {
-  switch (format) {
-  case /^png/:
+  switch (format.replace(/^(png|pbf).*/, "$1")) {
+  case "png":
     return "png";
 
   case "pbf":
