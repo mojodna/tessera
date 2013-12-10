@@ -8,6 +8,7 @@ var util = require("util");
 
 var cors = require("cors"),
     express = require("express"),
+    mercator = new (require("sphericalmercator"))(),
     tilelive = require("tilelive-cache")(require("tilelive"), {
       size: process.env.CACHE_SIZE || 10
     });
@@ -40,6 +41,45 @@ console.log("URI:", uri);
 // warm the cache
 tilelive.load(uri);
 
+var getInfo = function(source, callback) {
+  return source.getInfo(function(err, _info) {
+    if (err) {
+      return callback(err);
+    }
+
+    var info = {};
+
+    Object.keys(_info).forEach(function(key) {
+      info[key] = _info[key];
+    });
+
+    if (info.vector_layers) {
+      info.format = "pbf";
+    }
+
+    info.bounds = info.bounds || [-180, -85.0511, 180, 85.0511];
+    info.format = info.format || (info.vector_layers ? "pbf" : null);
+    info.minzoom = Math.max(0, info.minzoom | 0);
+    info.maxzoom = Math.min(Infinity, info.maxzoom | 0);
+
+    return callback(null, info);
+  });
+};
+
+// TODO a more complete implementation of this exists...somewhere
+var getExtension = function(format) {
+  switch (format) {
+  case /^png/:
+    return "png";
+
+  case "pbf":
+    return "vector.pbf";
+
+  default:
+    throw new Error("Unrecognized format: " + format);
+  }
+};
+
 // TODO grids
 // TODO use TileJSON endpoint to initialize boilerplate viewer
 
@@ -48,18 +88,46 @@ app.get("/:z(\\d+)/:x(\\d+)/:y(\\d+).:format([\\w\\.]+)", function(req, res, nex
       x = req.params.x | 0,
       y = req.params.y | 0;
 
+  // yeah, this is unnecessary now (since uri doesn't change), but if this is
+  // used to render multiple layers it becomes necessary
   return tilelive.load(uri, function(err, source) {
     if (err) {
       return next(err);
     }
 
-    return source.getTile(z, x, y, function(err, data, headers) {
+    return getInfo(source, function(err, info) {
       if (err) {
         return next(err);
       }
 
-      res.set(headers);
-      return res.send(data);
+      // validate format / extension
+      if (getExtension(info.format) !== req.params.format) {
+        return res.send(404);
+      }
+
+      // validate zoom
+      if (z < info.minzoom || z > info.maxzoom) {
+        return res.send(404);
+      }
+
+      // validate coords against bounds
+      var xyz = mercator.xyz(info.bounds, z);
+
+      if (x < xyz.minX ||
+          x > xyz.maxX ||
+          y < xyz.minY ||
+          y > xyz.maxY) {
+        return res.send(404);
+      }
+
+      return source.getTile(z, x, y, function(err, data, headers) {
+        if (err) {
+          return next(err);
+        }
+
+        res.set(headers);
+        return res.send(data);
+      });
     });
   });
 });
@@ -70,35 +138,15 @@ app.get("/index.json", function(req, res, next) {
       return next(err);
     }
 
-    return source.getInfo(function(err, info) {
+    return getInfo(source, function(err, info) {
       if (err) {
         return next(err);
       }
 
-      if (info.vector_layers) {
-        info.format = "pbf";
-      }
-
-      info.bounds = info.bounds || [-180, -85.0511, 180, 85.0511];
-      info.format = info.format || (info.vector_layers ? "pbf" : null);
+      info.tiles = [util.format("http://%s/{z}/{x}/{y}.%s",
+                                req.headers.host,
+                                getExtension(info.format))];
       info.tilejson = "2.0.0";
-
-      var ext;
-
-      switch (info.format) {
-      case /^png/:
-        ext = "png";
-        break;
-
-      case "pbf":
-        ext = "vector.pbf";
-        break;
-
-      default:
-        return next(new Error("Unrecognized format: " + info.format));
-      }
-
-      info.tiles = [util.format("http://%s/{z}/{x}/{y}.%s", req.headers.host, ext)];
 
       return res.send(info);
     });

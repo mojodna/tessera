@@ -10,7 +10,8 @@
     "express": "~3.4.4",
     "tilelive": "~4.5.2",
     "tilelive-cache": "https://github.com/mojodna/tilelive-cache/tarball/master",
-    "cors": "~2.1.0"
+    "cors": "~2.1.0",
+    "sphericalmercator": "~1.0.2"
   },
   "optionalDependencies": {
     "tilelive-mapbox": "https://github.com/mojodna/tilelive-mapbox/tarball/master",
