@@ -102,11 +102,13 @@ app.get("/:z(\\d+)/:x(\\d+)/:y(\\d+).:format([\\w\\.]+)", function(req, res, nex
 
       // validate format / extension
       if (getExtension(info.format) !== req.params.format) {
+        console.warn("Invalid format", req.params.format);
         return res.send(404);
       }
 
       // validate zoom
       if (z < info.minzoom || z > info.maxzoom) {
+        console.warn("Invalid zoom:", z);
         return res.send(404);
       }
 
@@ -117,6 +119,7 @@ app.get("/:z(\\d+)/:x(\\d+)/:y(\\d+).:format([\\w\\.]+)", function(req, res, nex
           x > xyz.maxX ||
           y < xyz.minY ||
           y > xyz.maxY) {
+        console.warn("Invalid coordinates: %d,%d", x, y);
         return res.send(404);
       }
 
