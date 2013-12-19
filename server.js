@@ -60,7 +60,7 @@ var getInfo = function(source, callback) {
     info.bounds = info.bounds || [-180, -85.0511, 180, 85.0511];
     info.format = info.format || (info.vector_layers ? "pbf" : null);
     info.minzoom = Math.max(0, info.minzoom | 0);
-    info.maxzoom = Math.min(Infinity, info.maxzoom | 0);
+    info.maxzoom = info.maxzoom || Infinity;
 
     return callback(null, info);
   });
