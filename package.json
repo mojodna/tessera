@@ -11,7 +11,9 @@
     "tilelive": "~4.5.2",
     "tilelive-cache": "https://github.com/mojodna/tilelive-cache/tarball/master",
     "cors": "~2.1.0",
-    "sphericalmercator": "~1.0.2"
+    "sphericalmercator": "~1.0.2",
+    "tilelive-file": "0.0.3",
+    "npm": "~1.3.23"
   },
   "optionalDependencies": {
     "tilelive-mapbox": "https://github.com/mojodna/tilelive-mapbox/tarball/master",
