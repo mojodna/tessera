@@ -12,6 +12,7 @@ var cors = require("cors"),
 
 try { require("tilejson").registerProtocols(tilelive); } catch (e) {}
 try { require("tilelive-bridge").registerProtocols(tilelive); } catch (e) {}
+try { require("tilelive-csv")(tilelive); } catch (e) {}
 try { require("tilelive-file").registerProtocols(tilelive); } catch (e) {}
 try { require("tilelive-http").registerProtocols(tilelive); } catch (e) {}
 try { require("tilelive-mapbox")(tilelive); } catch (e) {}
@@ -37,6 +38,7 @@ var uri = process.argv.slice(2).pop() || "tmstyle://./project.yml";
 
 app.use(express.static(__dirname + "/public"));
 app.use(serve(tilelive, uri));
+app.use("/debug", serve(tilelive, "csv+" + uri));
 
 app.listen(process.env.PORT || 8080, function() {
   console.log("Listening at http://%s:%d/", this.address().address, this.address().port);
