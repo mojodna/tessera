@@ -50,9 +50,8 @@ body, #map {
       maxZoom: data.maxzoom || 20,
     }
 
-    // TODO strip metadata from format
     // TODO use data.tiles
-    var provider = "{z}/{x}/{y}." + (data.format || "png");
+    var provider = "{z}/{x}/{y}." + (data.format.replace(/^(png).*/, "$1") || "png");
 
     /*
     var mediaQuery = "(-webkit-min-device-pixel-ratio: 1.5),\
