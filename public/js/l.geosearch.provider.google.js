@@ -44,11 +44,12 @@ L.GeoSearch.Provider.Google = L.Class.extend({
         data.results[i].formatted_address
       ));
 
+      console.log(data.results[0].geometry.viewport);
       var viewport = [
-        [data.results[0].geometry.viewport.ea.b,
-        data.results[0].geometry.viewport.ia.b], 
-        [data.results[0].geometry.viewport.ea.d,
-        data.results[0].geometry.viewport.ia.d]
+        [data.results[0].geometry.viewport.fa.b,
+        data.results[0].geometry.viewport.ga.b], 
+        [data.results[0].geometry.viewport.fa.d,
+        data.results[0].geometry.viewport.ga.d]
       ];
 
       map.fitBounds(viewport);
