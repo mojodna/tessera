@@ -28,37 +28,47 @@ body, #map {
       keyboardPanOffset: 256
   });
 
-  if (!location.hash) {
+  $.getJSON("/index.json", function(data) {
     // provide a default location in the hash, not the L.map (since that will
     // load before L.Hash takes control)
-    location.hash = "#13/37.8/-122.4";
-  }
+    if (!location.hash) {
+      if (data.center) {
+        location.hash = "#" + data.center.reverse().join("/");
+      } else {
+        location.hash = "#13/37.8/-122.4";
+      }
+    }
 
-  new L.Hash(map);
-  new L.Control.GeoSearch({
-    provider: new L.GeoSearch.Provider.Google(),
-    showMarker: false
-  }).addTo(map);
+    new L.Hash(map);
+    new L.Control.GeoSearch({
+      provider: new L.GeoSearch.Provider.Google(),
+      showMarker: false
+    }).addTo(map);
 
-  var options = {
-    maxZoom: 20 // TODO load this (and minZoom) from project.mml if available
-  }
-  var provider = "{z}/{x}/{y}.png";
+    var options = {
+      minZoom: data.minzoom || 0,
+      maxZoom: data.maxzoom || 20,
+    }
 
-  /*
-  var mediaQuery = "(-webkit-min-device-pixel-ratio: 1.5),\
-                    (min--moz-device-pixel-ratio: 1.5),\
-                    (-o-min-device-pixel-ratio: 3/2),\
-                    (min-resolution: 1.5dppx)";
-  if (window.devicePixelRatio > 1 ||
-      (window.matchMedia && window.matchMedia(mediaQuery).matches)) {
-    provider = "{z}/{x}/{y}@2x.png";
-    options.tileSize = 512;
-    options.zoomOffset = -1;
-  }
-  */
+    // TODO strip metadata from format
+    // TODO use data.tiles
+    var provider = "{z}/{x}/{y}." + (data.format || "png");
 
-  L.tileLayer(provider, options).addTo(map);
+    /*
+    var mediaQuery = "(-webkit-min-device-pixel-ratio: 1.5),\
+                      (min--moz-device-pixel-ratio: 1.5),\
+                      (-o-min-device-pixel-ratio: 3/2),\
+                      (min-resolution: 1.5dppx)";
+    if (window.devicePixelRatio > 1 ||
+        (window.matchMedia && window.matchMedia(mediaQuery).matches)) {
+      provider = "{z}/{x}/{y}@2x.png";
+      options.tileSize = 512;
+      options.zoomOffset = -1;
+    }
+    */
+
+    L.tileLayer(provider, options).addTo(map);
+  });
 </script>
 </body>
 </html>
