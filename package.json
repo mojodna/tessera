@@ -8,7 +8,7 @@
   "license": "BSD-2-Clause",
   "dependencies": {
     "express": "~3.4.4",
-    "tilelive": "~4.5.2",
+    "tilelive": "mojodna/tilelive.js#include-protocol",
     "tilelive-cache": "https://github.com/mojodna/tilelive-cache/tarball/master",
     "cors": "~2.1.0",
     "sphericalmercator": "~1.0.2",
