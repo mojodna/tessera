@@ -1,11 +1,15 @@
 {
   "name": "tessera",
   "version": "0.0.2",
-  "description": "",
+  "description": "A tilelive-based tile server",
   "main": "index.js",
   "bin": "server.js",
   "author": "Seth Fitzsimmons <seth@mojodna.net>",
   "license": "BSD-2-Clause",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mojodna/tessera.git"
+  },
   "dependencies": {
     "express": "~3.4.4",
     "tilelive": "mojodna/tilelive.js#include-protocol",
