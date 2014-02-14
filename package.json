@@ -26,6 +26,8 @@
     "tilelive-http": "https://github.com/mojodna/tilelive-http/tarball/master",
     "tilelive-mapnik": "~0.6.4",
     "tilelive-tmsource": "https://github.com/mojodna/tilelive-tmsource/tarball/master",
-    "tilelive-tmstyle": "https://github.com/mojodna/tilelive-tmstyle/tarball/master"
+    "tilelive-tmstyle": "https://github.com/mojodna/tilelive-tmstyle/tarball/master",
+    "mapnik": "~1.2.3",
+    "eio": "~0.2.2"
   }
 }
