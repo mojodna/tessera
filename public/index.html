@@ -1,10 +1,11 @@
 <html>
 <head>
-<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
 <!--[if lte IE 8]>
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.ie.css" />
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.ie.css" />
 <![endif]-->
-<script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
+<script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
 <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
 <script src="http://mlevans.github.com/leaflet-hash/javascripts/leaflet-hash.js"></script>
 <script src="js/l.control.geosearch.js"></script>
@@ -53,18 +54,14 @@ body, #map {
     // TODO use data.tiles
     var provider = "{z}/{x}/{y}." + (data.format.replace(/^(png).*/, "$1") || "png");
 
-    /*
     var mediaQuery = "(-webkit-min-device-pixel-ratio: 1.5),\
                       (min--moz-device-pixel-ratio: 1.5),\
                       (-o-min-device-pixel-ratio: 3/2),\
                       (min-resolution: 1.5dppx)";
     if (window.devicePixelRatio > 1 ||
         (window.matchMedia && window.matchMedia(mediaQuery).matches)) {
-      provider = "{z}/{x}/{y}@2x.png";
-      options.tileSize = 512;
-      options.zoomOffset = -1;
+      provider = "{z}/{x}/{y}@2x." + (data.format.replace(/^(png).*/, "$1") || "png");
     }
-    */
 
     L.tileLayer(provider, options).addTo(map);
   });
