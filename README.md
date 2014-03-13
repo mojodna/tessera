@@ -77,4 +77,5 @@ tessera tilejson+http://a.tiles.mapbox.com/v3/mapbox.mapbox-streets-v4.json
 
 * `PORT` - Port to bind to. Defaults to `8080`.
 * `CACHE_SIZE` - Cache size (in MB) for
-  [tilelive-cache](https://github.com/mojodna/tilelive-cache)
+  [tilelive-cache](https://github.com/mojodna/tilelive-cache). Defaults to
+  10MB.
