@@ -73,6 +73,10 @@ To proxy tiles with available
 tessera tilejson+http://a.tiles.mapbox.com/v3/mapbox.mapbox-streets-v4.json
 ```
 
+A TileJSON endpoint is available at
+[localhost:8080/index.json](http://localhost:8080/index.json) with various bits
+of metadata about the tiles being served.
+
 ## Environment Variables
 
 * `PORT` - Port to bind to. Defaults to `8080`.
