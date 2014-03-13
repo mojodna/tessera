@@ -29,6 +29,12 @@ To serve up a [TM2](https://github.com/mapbox/tm2) style (it will use
 tessera tmstyle://./
 ```
 
+**Note**: non-`mapbox:` sources may need to have their protocols changed;
+tessera requires that styles using HTTP-accessible data have `tilejson+http:`
+as their protocol where TM2 expects `http:`.  See
+[mojodna/tilelive-http#2](https://github.com/mojodna/tilelive-http/issues/2)
+for more information.
+
 To serve up a [TM2](https://github.com/mapbox/tm2) data source (it will use
 `data.yml` as the source of truth) using
 [tilelive-tmsource](https://github.com/mojodna/tilelive-tmsource):
