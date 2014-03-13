@@ -4,7 +4,7 @@ tessera is a [tilelive](https://github.com/mapbox/tilelive.js)-based tile
 server.
 
 Using the power of the tilelive ecosystem, it is capable of serving and
-rendering tiles from many source.
+rendering tiles from many sources.
 
 ## Installation
 
