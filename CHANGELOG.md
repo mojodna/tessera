@@ -1,5 +1,9 @@
 # Changes
 
+## v0.1.2 - 4/1/14
+
+* Add minimal-ui for Mobile Safari
+
 ## v0.1.1 - 4/1/14
 
 * Retina tile content matches non-retina tiles
