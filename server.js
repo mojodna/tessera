@@ -12,6 +12,7 @@ var cors = require("cors"),
 
 try { require("tilejson").registerProtocols(tilelive); } catch (e) {}
 try { require("tilelive-bridge").registerProtocols(tilelive); } catch (e) {}
+try { require("tilelive-carto")(tilelive); } catch (e) {}
 try { require("tilelive-file").registerProtocols(tilelive); } catch (e) {}
 try { require("tilelive-http").registerProtocols(tilelive); } catch (e) {}
 try { require("tilelive-mapbox")(tilelive); } catch (e) {}

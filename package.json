@@ -28,6 +28,7 @@
     "tilelive-tmsource": "mojodna/tilelive-tmsource",
     "tilelive-tmstyle": "mojodna/tilelive-tmstyle",
     "mapnik": "~1.4.0",
-    "eio": "~0.2.2"
+    "eio": "~0.2.2",
+    "tilelive-carto": "git://github.com/mojodna/tilelive-carto"
   }
 }

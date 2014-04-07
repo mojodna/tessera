@@ -1,5 +1,10 @@
 # Changes
 
+## vNext
+
+* Support Carto (TileMill 1) styles via
+  [tilelive-carto](https://github.com/mojodna/tilelive-carto)
+
 ## v0.1.2 - 4/1/14
 
 * Add minimal-ui for Mobile Safari
