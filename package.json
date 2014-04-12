@@ -2,7 +2,7 @@
   "name": "tessera",
   "version": "0.1.2",
   "description": "A tilelive-based tile server",
-  "main": "index.js",
+  "main": "lib/app.js",
   "bin": "server.js",
   "author": "Seth Fitzsimmons <seth@mojodna.net>",
   "license": "BSD-2-Clause",
