@@ -6,6 +6,7 @@ process.env.UV_THREADPOOL_SIZE = process.env.UV_THREADPOOL_SIZE || Math.ceil(Mat
 
 var cors = require("cors"),
     express = require("express"),
+    responseTime = require("response-time"),
     tilelive = require("tilelive-cache")(require("tilelive"), {
       size: process.env.CACHE_SIZE || 10
     });
@@ -27,12 +28,12 @@ var app = express();
 
 app.disable("x-powered-by");
 
-app.use(express.responseTime());
+app.use(responseTime());
 app.use(cors());
 
-app.configure("development", function() {
+if (process.env.NODE_ENV === "development") {
   app.use(express.logger());
-});
+}
 
 var uri = process.argv.slice(2).pop() || "tmstyle://./project.yml";
 

@@ -11,12 +11,13 @@
     "url": "https://github.com/mojodna/tessera.git"
   },
   "dependencies": {
-    "express": "~3.4.8",
+    "express": "^4.0.0",
     "tilelive": "mojodna/tilelive.js#include-protocol",
     "tilelive-cache": "mojodna/tilelive-cache",
     "cors": "~2.2.0",
     "sphericalmercator": "~1.0.2",
-    "tilelive-file": "0.0.3"
+    "tilelive-file": "0.0.3",
+    "response-time": "^1.0.0"
   },
   "optionalDependencies": {
     "tilelive-mapbox": "mojodna/tilelive-mapbox",
