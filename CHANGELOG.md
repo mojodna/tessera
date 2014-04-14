@@ -3,6 +3,7 @@
 ## vNext
 
 * Upgraded Express to 4.0
+* Export `lib/app.js` as `require("tessera")`
 * Support Carto (TileMill 1) styles via
   [tilelive-carto](https://github.com/mojodna/tilelive-carto)
 
