@@ -2,6 +2,7 @@
 
 ## vNext
 
+* Simplify format handling: `<tile>.vector.pbf` is now `<tile>.pbf`
 * Upgraded Express to 4.0
 * Export `lib/app.js` as `require("tessera")`
 * Support Carto (TileMill 1) styles via
