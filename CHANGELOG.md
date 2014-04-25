@@ -2,6 +2,7 @@
 
 ## vNext
 
+* Default headers are provided for PBFs (@hallahan)
 * Simplify format handling: `<tile>.vector.pbf` is now `<tile>.pbf`
 * Upgraded Express to 4.0
 * Export `lib/app.js` as `require("tessera")`
