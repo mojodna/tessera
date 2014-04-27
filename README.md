@@ -126,12 +126,11 @@ Header values are treated as
 [Handlebars](http://handlebarsjs.com/)) templates, which allow them to vary by
 request. The following variables are available to header templates:
 
-* `tile` - for tile requests
-* `retina` - for retina (`@2x`) requests
-* `zoom` - zoom (for tile requests)
-* `x` - row (for tile requests)
-* `y` - column (for tile requests)
-* `format` - requested format
+* `tile.retina` - for retina (`@2x`) requests
+* `tile.zoom` - zoom (for tile requests)
+* `tile.x` - row (for tile requests)
+* `tile.y` - column (for tile requests)
+* `tile.format` - requested format
 * `tileJSON` - for TileJSON requests
 * `200` - HTTP 200
 * `404` - HTTP 404
