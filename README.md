@@ -21,12 +21,11 @@ using [node-mbtiles](https://github.com/mapbox/node-mbtiles):
 tessera mbtiles://./whatever.mbtiles
 ```
 
-To serve up a [TM2](https://github.com/mapbox/tm2) style (it will use
-`project.yml` as the source of truth) using
+To serve up a [TM2](https://github.com/mapbox/tm2) style using
 [tilelive-tmstyle](https://github.com/mojodna/tilelive-tmstyle):
 
 ```bash
-tessera tmstyle://./
+tessera tmstyle://./project.yml
 ```
 
 **Note**: non-`mapbox:` sources may need to have their protocols changed;
@@ -82,6 +81,76 @@ tessera tilejson+http://a.tiles.mapbox.com/v3/mapbox.mapbox-streets-v4.json
 A TileJSON endpoint is available at
 [localhost:8080/index.json](http://localhost:8080/index.json) with various bits
 of metadata about the tiles being served.
+
+## Configuration
+
+Tessera has command-line options:
+
+```bash
+Usage: node tessera.js [uri] [options]
+
+uri     tilelive URI to serve
+
+Options:
+   -C SIZE, --cache-size SIZE   Set the cache size (in MB)  [10]
+   -c CONFIG, --config CONFIG   Provide a configuration file
+   -p PORT, --port PORT         Set the HTTP Port  [8080]
+   -v, --version                Show version info
+
+A tilelive URI or configuration file is required.
+```
+
+This is what a configuration file looks like:
+
+```javascript
+{
+  "/": {
+    "source": "mbtiles:///Users/seth/archive.mbtiles",
+    "cors": false,
+    "timing": false
+  },
+  "/a": {
+    "source": "mbtiles:///Users/seth/archive.mbtiles",
+    "headers": {
+      "Cache-Control": "public,max-age={{#tileJSON}}86400{{/tileJSON}}{{#tile}}3600{{/tile}}",
+      "Surrogate-Control": "max-age=86400",
+      "Surrogate-Keys": "{{#tile}}z{{zoom}} x{{x}} y{{y}}{{/tile}}"
+    }
+  },
+  "/b": "mbtiles:///Users/seth/archive.mbtiles"
+}
+```
+
+Header values are treated as
+[Mustache](http://mustache.github.io/mustache.5.html) (technically
+[Handlebars](http://handlebarsjs.com/)) templates, which allow them to vary by
+request. The following variables are available to header templates:
+
+* `tile` - for tile requests
+* `retina` - for retina (`@2x`) requests
+* `zoom` - zoom (for tile requests)
+* `x` - row (for tile requests)
+* `y` - column (for tile requests)
+* `format` - requested format
+* `tileJSON` - for TileJSON requests
+* `200` - HTTP 200
+* `404` - HTTP 404
+* `invalidFormat` - the requested format did not match what the tilelive source
+  provides
+* `invalidZoom` - the requested zoom is outside the available range
+* `invalidBounds` - the requested coordinates are outside the available bounds
+
+CORS and `X-Response-Time` can be disabled per-style:
+
+```javascript
+{
+  "cors": false,
+  "timing": false
+}
+```
+
+(Note that enabling for `/` will propagate to all subdirectories, as they act
+as middleware.)
 
 ## Environment Variables
 

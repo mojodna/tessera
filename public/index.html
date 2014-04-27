@@ -26,7 +26,7 @@ body, #map {
       keyboardPanOffset: 256
   });
 
-  $.getJSON("/index.json", function(data) {
+  $.getJSON("index.json", function(data) {
     // provide a default location in the hash, not the L.map (since that will
     // load before L.Hash takes control)
     if (!location.hash) {

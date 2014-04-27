@@ -3,22 +3,25 @@
   "version": "0.1.2",
   "description": "A tilelive-based tile server",
   "main": "lib/app.js",
-  "bin": "server.js",
+  "bin": "bin/tessera.js",
   "author": "Seth Fitzsimmons <seth@mojodna.net>",
   "license": "BSD-2-Clause",
+  "preferGlobal": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/mojodna/tessera.git"
   },
   "dependencies": {
-    "express": "^4.0.0",
+    "express": "^4.1.0",
     "tilelive": "mojodna/tilelive.js#include-protocol",
     "tilelive-cache": "mojodna/tilelive-cache",
     "cors": "~2.2.0",
     "sphericalmercator": "~1.0.2",
     "tilelive-file": "0.0.3",
     "response-time": "^1.0.0",
-    "morgan": "^1.0.0"
+    "morgan": "^1.0.0",
+    "nomnom": "^1.6.2",
+    "handlebars": "^2.0.0-alpha.2"
   },
   "optionalDependencies": {
     "tilelive-mapbox": "mojodna/tilelive-mapbox",
