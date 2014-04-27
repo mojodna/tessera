@@ -137,7 +137,7 @@ request. The following variables are available to header templates:
 * `invalidFormat` - the requested format did not match what the tilelive source
   provides
 * `invalidZoom` - the requested zoom is outside the available range
-* `invalidBounds` - the requested coordinates are outside the available bounds
+* `invalidCoordinates` - the requested coordinates are outside the available bounds
 
 CORS and `X-Response-Time` can be disabled per-style:
 
