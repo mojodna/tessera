@@ -151,6 +151,25 @@ CORS and `X-Response-Time` can be disabled per-style:
 (Note that enabling for `/` will propagate to all subdirectories, as they act
 as middleware.)
 
+Custom tile paths may be set per-style:
+
+```javascript
+{
+  "tilePath": "/{z}/{x}/{y}-debug.{format}"
+}
+```
+
+The default tile path is:
+
+```javascript
+{
+  "tilePath": "/{z}/{x}/{y}.{format}"
+}
+```
+
+(_Note_: the final `.` will be expanded to transparently support retina
+requests (effectively `/{z}/{x}/{y}@2x.{format}`).)
+
 ## Environment Variables
 
 * `PORT` - Port to bind to. Defaults to `8080`.

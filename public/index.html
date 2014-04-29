@@ -56,7 +56,8 @@ body, #map {
                       (min-resolution: 1.5dppx)";
     if (window.devicePixelRatio > 1 ||
         (window.matchMedia && window.matchMedia(mediaQuery).matches)) {
-      provider = provider.replace("{y}.", "{y}@2x.");
+      // replace the last "." with "@2x."
+      provider = provider.replace(/\.(?!.*\.)/, "@2x.")
     }
 
     L.tileLayer(provider, options).addTo(map);
