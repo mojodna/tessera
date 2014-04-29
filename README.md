@@ -25,7 +25,7 @@ To serve up a [TM2](https://github.com/mapbox/tm2) style using
 [tilelive-tmstyle](https://github.com/mojodna/tilelive-tmstyle):
 
 ```bash
-tessera tmstyle://./project.yml
+tessera tmstyle://./
 ```
 
 **Note**: non-`mapbox:` sources may need to have their protocols changed;
