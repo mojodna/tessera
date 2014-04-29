@@ -48,8 +48,7 @@ body, #map {
       maxZoom: data.maxzoom || 20,
     }
 
-    // TODO use data.tiles
-    var provider = "{z}/{x}/{y}." + (data.format.replace(/^(png).*/, "$1") || "png");
+    var provider = data.tiles.pop();
 
     var mediaQuery = "(-webkit-min-device-pixel-ratio: 1.5),\
                       (min--moz-device-pixel-ratio: 1.5),\
@@ -57,7 +56,7 @@ body, #map {
                       (min-resolution: 1.5dppx)";
     if (window.devicePixelRatio > 1 ||
         (window.matchMedia && window.matchMedia(mediaQuery).matches)) {
-      provider = "{z}/{x}/{y}@2x." + (data.format.replace(/^(png).*/, "$1") || "png");
+      provider = provider.replace("{y}.", "{y}@2x.");
     }
 
     L.tileLayer(provider, options).addTo(map);
