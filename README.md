@@ -21,6 +21,14 @@ using [node-mbtiles](https://github.com/mapbox/node-mbtiles):
 tessera mbtiles://./whatever.mbtiles
 ```
 
+To serve up a [TileMill](https://www.mapbox.com/tilemill/) (or
+[Carto](https://github.com/mapbox/carto)) project using
+[tilelive-carto](https://github.com/mojodna/tilelive-carto):
+
+```bash
+tessera carto+file://./project.mml
+```
+
 To serve up a [TM2](https://github.com/mapbox/tm2) style using
 [tilelive-tmstyle](https://github.com/mojodna/tilelive-tmstyle):
 
