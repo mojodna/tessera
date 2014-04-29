@@ -1,7 +1,9 @@
 # Changes
 
-## vNext
+## v0.2.0 - 4/28/14
 
+* Added support for configuration files
+* Added command-line options
 * Default headers are provided for PBFs (@hallahan)
 * Simplify format handling: `<tile>.vector.pbf` is now `<tile>.pbf`
 * Upgraded Express to 4.0
