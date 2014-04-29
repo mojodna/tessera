@@ -15,8 +15,8 @@
     "express": "^4.1.0",
     "tilelive": "mojodna/tilelive.js#include-protocol",
     "tilelive-cache": "^0.1.0",
-    "cors": "~2.2.0",
-    "sphericalmercator": "~1.0.2",
+    "cors": "^2.2.0",
+    "sphericalmercator": "^1.0.2",
     "tilelive-file": "0.0.3",
     "response-time": "^1.0.0",
     "morgan": "^1.0.0",
@@ -25,14 +25,14 @@
   },
   "optionalDependencies": {
     "tilelive-mapbox": "^0.1.0",
-    "mbtiles": "~0.4.2",
-    "tilelive-bridge": "~0.2.0",
+    "mbtiles": "^0.4.2",
+    "tilelive-bridge": "^0.2.0",
     "tilejson": "mojodna/node-tilejson#integration",
     "tilelive-http": "^0.1.2",
     "tilelive-mapnik": "^0.6.9",
     "tilelive-tmsource": "^0.1.0",
     "tilelive-tmstyle": "^0.1.0",
-    "mapnik": "~1.4.0",
+    "mapnik": "^1.4.0",
     "tilelive-carto": "^0.1.0"
   }
 }
