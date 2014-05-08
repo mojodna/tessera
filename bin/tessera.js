@@ -26,6 +26,12 @@ var nomnom = require("nomnom")
       help: "Set the HTTP Port",
       default: 8080
     },
+    "require": {
+      abbr: "r",
+      metavar: "MODULE",
+      help: "Require a specific tilelive module",
+      list: true
+    },
     "version": {
       abbr: "v",
       flag: true,
@@ -37,7 +43,14 @@ var nomnom = require("nomnom")
   })
   .help("A tilelive URI or configuration file is required.");
 
-var opts = nomnom.parse();
+var argv = (process.env.TESSERA_OPTS || "")
+  .split(" ")
+  .concat(process.argv.slice(2))
+  .filter(function(x) {
+    return !!x;
+  });
+
+var opts = nomnom.parse(argv);
 
 switch (true) {
 case opts.version:

@@ -21,7 +21,7 @@ module.exports = function(opts, callback) {
       });
 
   // load and register tilelive modules
-  require("./modules")(tilelive);
+  require("./modules")(tilelive, opts);
 
   if (process.env.NODE_ENV !== "production") {
     // TODO configurable logging per-style
