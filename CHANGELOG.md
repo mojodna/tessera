@@ -1,5 +1,13 @@
 # Changes
 
+## v0.4.0
+
+* Optional dependencies dropped in favor of detecting / explicitly requiring
+  installed modules. To add auto-detected modules, check out
+  [tilelive-modules](https://github.com/mojodna/tilelive-modules).
+* Added support for the `TESSERA_OPTS` environment variable
+* Added (repeatable) `--require` option
+
 ## v0.3.0 - 5/27/14
 
 * Use the xray view by default for PBF sources specified on the command line

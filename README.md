@@ -10,14 +10,26 @@ rendering tiles from many sources.
 
 ```bash
 npm install -g tessera
+npm install -g <tilelive modules...>
 ```
 
 ## How to Use
+
+tessera does not install tilelive providers itself; it is up to you to
+(globally) install any modules that you wish to use (along with dependencies
+present in your configuration; e.g. a TM2 style that loads data tiles from an
+HTTP source).
+
+Modules listed in
+[tilelive-modules](https://github.com/mojodna/tilelive-modules) will be
+auto-detected and loaded if they have been installed. For other modules, you
+will need to `--require` them explicitly.
 
 To serve up an [MBTiles](https://www.mapbox.com/developers/mbtiles/) archive
 using [node-mbtiles](https://github.com/mapbox/node-mbtiles):
 
 ```bash
+npm install -g mbtiles
 tessera mbtiles://./whatever.mbtiles
 ```
 
@@ -103,10 +115,13 @@ Options:
    -C SIZE, --cache-size SIZE   Set the cache size (in MB)  [10]
    -c CONFIG, --config CONFIG   Provide a configuration file
    -p PORT, --port PORT         Set the HTTP Port  [8080]
+   -r MODULE, --require MODULE   Require a specific tilelive module
    -v, --version                Show version info
 
 A tilelive URI or configuration file is required.
 ```
+
+Commonly used options can be set using the `TESSERA_OPTS` environment variable.
 
 This is what a configuration file looks like:
 
@@ -184,3 +199,4 @@ requests (effectively `/{z}/{x}/{y}@2x.{format}`).)
 * `CACHE_SIZE` - Cache size (in MB) for
   [tilelive-cache](https://github.com/mojodna/tilelive-cache). Defaults to
   10MB.
+* `TESSERA_OPTS` - Additional command-line arguments.
