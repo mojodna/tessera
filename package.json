@@ -28,7 +28,7 @@
     "mbtiles": "^0.4.2",
     "tilelive-bridge": "^0.2.0",
     "tilejson": "mojodna/node-tilejson#integration",
-    "tilelive-http": "^0.1.2",
+    "tilelive-http": "^0.2.0",
     "tilelive-mapnik": "^0.6.9",
     "tilelive-tmsource": "^0.1.0",
     "tilelive-tmstyle": "^0.1.0",
