@@ -17,22 +17,22 @@
     "tilelive-cache": "^0.1.0",
     "cors": "^2.2.0",
     "sphericalmercator": "^1.0.2",
-    "tilelive-file": "0.0.3",
     "response-time": "^1.0.0",
     "morgan": "^1.0.0",
     "nomnom": "^1.6.2",
     "handlebars": "^2.0.0-alpha.2"
   },
   "optionalDependencies": {
-    "tilelive-mapbox": "^0.1.0",
+    "tilelive-mapbox": "^0.2.1",
     "mbtiles": "^0.4.2",
-    "tilelive-bridge": "^0.2.0",
-    "tilejson": "mojodna/node-tilejson#integration",
-    "tilelive-http": "^0.2.0",
+    "tilelive-bridge": "^0.4.0",
+    "tilejson": "^0.6.4",
+    "tilelive-file": "0.0.3",
+    "tilelive-http": "^0.2.3",
     "tilelive-mapnik": "^0.6.9",
     "tilelive-tmsource": "^0.1.0",
     "tilelive-tmstyle": "^0.1.0",
-    "mapnik": "^1.4.0",
+    "mapnik": "^1.4.3",
     "tilelive-carto": "^0.1.0"
   }
 }

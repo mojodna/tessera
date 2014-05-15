@@ -1,5 +1,9 @@
 # Changes
 
+## v0.2.1 - 5/15/14
+
+* Updated dependencies to help with installation problems
+
 ## v0.2.0 - 4/28/14
 
 * Added support for configuration files
