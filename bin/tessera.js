@@ -4,29 +4,29 @@
 
 var nomnom = require("nomnom")
   .options({
-    "uri": {
+    uri: {
       position: 0,
       help: "tilelive URI to serve"
     },
-    "cacheSize": {
+    cacheSize: {
       full: "cache-size",
       abbr: "C",
       metavar: "SIZE",
       help: "Set the cache size (in MB)",
       default: 10
     },
-    "config": {
+    config: {
       abbr: "c",
       metavar: "CONFIG",
       help: "Provide a configuration file"
     },
-    "port": {
+    port: {
       abbr: "p",
       metavar: "PORT",
       help: "Set the HTTP Port",
       default: 8080
     },
-    "version": {
+    version: {
       abbr: "v",
       flag: true,
       help: "Show version info",
