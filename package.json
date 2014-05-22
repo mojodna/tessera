@@ -32,7 +32,9 @@
     "tilelive-mapnik": "^0.6.9",
     "tilelive-tmsource": "^0.1.0",
     "tilelive-tmstyle": "^0.1.0",
+    "tilelive-vector": "^0.12.1",
     "mapnik": "^1.4.3",
-    "tilelive-carto": "^0.1.0"
+    "tilelive-carto": "^0.1.0",
+    "tilelive-xray": "^0.1.0"
   }
 }

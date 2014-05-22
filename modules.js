@@ -10,6 +10,8 @@ module.exports = function(tilelive) {
   try { require("tilelive-mapnik").registerProtocols(tilelive); } catch (e) {}
   try { require("tilelive-tmsource")(tilelive); } catch (e) {}
   try { require("tilelive-tmstyle")(tilelive); } catch (e) {}
+  try { require("tilelive-vector").registerProtocols(tilelive); } catch (e) {}
+  try { require("tilelive-xray")(tilelive); } catch (e) {}
   try { require("mbtiles").registerProtocols(tilelive); } catch (e) {}
 
   return tilelive;
