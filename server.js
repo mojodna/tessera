@@ -11,14 +11,16 @@ var cors = require("cors"),
     morgan = require("morgan"),
     responseTime = require("response-time");
 
-var serve = require("./lib/app");
+var serve = require("./lib/app"),
+    tessera = require("./lib/index");
 
 module.exports = function(opts, callback) {
-  var callback = callback || function() {},
-      app = express().disable("x-powered-by"),
+  var app = express().disable("x-powered-by"),
       tilelive = require("tilelive-cache")(require("tilelive"), {
         size: process.env.CACHE_SIZE || opts.cacheSize
       });
+
+  callback = callback || function() {};
 
   // load and register tilelive modules
   require("./modules")(tilelive);
@@ -31,8 +33,25 @@ module.exports = function(opts, callback) {
   if (opts.uri) {
     app.use(responseTime());
     app.use(cors());
-    app.use(express.static(__dirname + "/public"));
+    app.use(express.static(path.join(__dirname, "public")));
     app.use(serve(tilelive, opts.uri));
+
+    tilelive.load(opts.uri, function(err, src) {
+      if (err) {
+        throw err;
+      }
+
+      return tessera.getInfo(src, function(err, info) {
+        if (err) {
+          throw err;
+        }
+
+        if (info.format === "pbf") {
+          app.use("/_", serve(tilelive, "xray+" + opts.uri));
+          app.use("/_", express.static(path.join(__dirname, "public")));
+        }
+      });
+    });
   }
 
   if (opts.config) {
@@ -47,7 +66,7 @@ module.exports = function(opts, callback) {
         app.use(prefix, cors());
       }
 
-      app.use(prefix, express.static(__dirname + "/public"));
+      app.use(prefix, express.static(path.join(__dirname, "public")));
       app.use(prefix, serve(tilelive, config[prefix]));
     });
   }
