@@ -20,7 +20,7 @@
     "response-time": "^1.0.0",
     "morgan": "^1.0.0",
     "nomnom": "^1.6.2",
-    "handlebars": "^2.0.0-alpha.2"
+    "handlebars": "^2.0.0-alpha.4"
   },
   "optionalDependencies": {
     "tilelive-mapbox": "^0.2.1",
