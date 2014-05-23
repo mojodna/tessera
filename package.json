@@ -14,7 +14,7 @@
   "dependencies": {
     "express": "^4.1.0",
     "tilelive": "mojodna/tilelive.js#include-protocol",
-    "tilelive-cache": "^0.1.2",
+    "tilelive-cache": "^0.2.0",
     "cors": "^2.2.0",
     "sphericalmercator": "^1.0.2",
     "response-time": "^1.0.0",
