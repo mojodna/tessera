@@ -2,6 +2,8 @@
 
 ## vNext
 
+* Updated `tilelive-tmstyle` to 0.1.2 with scale-dependent output
+* Misc. dependency updates
 * Updated `tilelive-cache` to 0.1.1
 
 ## v0.2.1 - 5/15/14
