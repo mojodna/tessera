@@ -1,5 +1,9 @@
 # Changes
 
+## vNext
+
+* Updated `tilelive-cache` to 0.1.1
+
 ## v0.2.1 - 5/15/14
 
 * Updated dependencies to help with installation problems
