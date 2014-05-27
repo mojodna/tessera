@@ -1,6 +1,6 @@
 # Changes
 
-## vNext
+## v0.3.0 - 5/27/14
 
 * Use the xray view by default for PBF sources specified on the command line
 * Updated `tilelive-tmstyle` to 0.1.2 with scale-dependent output
