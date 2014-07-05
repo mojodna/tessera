@@ -19,7 +19,7 @@
     "nomnom": "^1.6.2",
     "response-time": "^1.0.0",
     "sphericalmercator": "^1.0.2",
-    "tilelive": "mojodna/tilelive.js#include-protocol",
+    "tilelive": "^5.0.1",
     "tilelive-cache": "^0.2.0",
     "tilelive-modules": "^0.1.1"
   }
