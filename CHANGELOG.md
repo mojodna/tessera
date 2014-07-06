@@ -2,6 +2,7 @@
 
 ## v0.4.0
 
+* Pass `tileSize` query option for sources like `tilelive-mapnik`
 * Optional dependencies dropped in favor of detecting / explicitly requiring
   installed modules. To add auto-detected modules, check out
   [tilelive-modules](https://github.com/mojodna/tilelive-modules).
