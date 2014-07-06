@@ -2,6 +2,7 @@
 
 ## v0.4.0
 
+* Verify and return `Content-MD5` headers
 * Pass `tileSize` query option for sources like `tilelive-mapnik`
 * Optional dependencies dropped in favor of detecting / explicitly requiring
   installed modules. To add auto-detected modules, check out
