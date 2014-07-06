@@ -2,6 +2,7 @@
 
 ## v0.4.0
 
+* Use bower for client deps vs. bundling them
 * Verify and return `Content-MD5` headers
 * Pass `tileSize` query option for sources like `tilelive-mapnik`
 * Optional dependencies dropped in favor of detecting / explicitly requiring

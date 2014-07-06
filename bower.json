@@ -1,0 +1,24 @@
+{
+  "name": "tessera",
+  "version": "0.3.0",
+  "homepage": "https://github.com/mojodna/tessera",
+  "authors": [
+    "Seth Fitzsimmons <seth@mojodna.net>"
+  ],
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "leaflet": "~0.7.3",
+    "leaflet-hash": "*",
+    "zepto": "~1.1.3"
+  }
+}

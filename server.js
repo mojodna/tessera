@@ -34,6 +34,7 @@ module.exports = function(opts, callback) {
     app.use(responseTime());
     app.use(cors());
     app.use(express.static(path.join(__dirname, "public")));
+    app.use(express.static(path.join(__dirname, "bower_components")));
     app.use(serve(tilelive, opts.uri));
 
     tilelive.load(opts.uri, function(err, src) {
