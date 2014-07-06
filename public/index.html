@@ -6,7 +6,7 @@
 <script src="zepto/zepto.min.js"></script>
 <script src="leaflet-hash/leaflet-hash.js"></script>
 <script src="js/l.control.geosearch.js"></script>
-<script src="js/l.geosearch.provider.google.js"></script>
+<script src="js/l.geosearch.provider.nominatim.js"></script>
 <link rel="stylesheet" href="css/l.geosearch.css">
 <style type="text/css">
 body, #map {
@@ -39,7 +39,7 @@ body, #map {
 
     new L.Hash(map);
     new L.Control.GeoSearch({
-      provider: new L.GeoSearch.Provider.Google(),
+      provider: new L.GeoSearch.Provider.Nominatim(),
       showMarker: false
     }).addTo(map);
 

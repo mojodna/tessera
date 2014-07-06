@@ -91,7 +91,11 @@ L.Control.GeoSearch = L.Control.extend({
       var provider = this._config.provider;
 
       if(typeof provider.GetLocations == 'function') {
-	var results = provider.GetLocations(qry, this._map, function(results) {
+	var results = provider.GetLocations(qry, this._map, function(err, results) {
+	  if (err) {
+	    return this._printError(err);
+	  }
+
 	  this._processResults(results);
 	}.bind(this));
       }
