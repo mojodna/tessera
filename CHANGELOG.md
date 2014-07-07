@@ -1,6 +1,6 @@
 # Changes
 
-## v0.4.0
+## v0.4.0 - 7/7/14
 
 * Use Nominatim for geocoding
 * Use bower for client deps vs. bundling them
