@@ -54,11 +54,20 @@ body, #map {
       provider = provider.replace(/(\/{z})/, "/_$1").replace("pbf", "png");
     }
 
+    function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+
     var mediaQuery = "(-webkit-min-device-pixel-ratio: 1.5),\
                       (min--moz-device-pixel-ratio: 1.5),\
                       (-o-min-device-pixel-ratio: 3/2),\
                       (min-resolution: 1.5dppx)";
-    if (window.devicePixelRatio > 1 ||
+
+    if (getParameterByName("retina") ||
+        window.devicePixelRatio > 1 ||
         (window.matchMedia && window.matchMedia(mediaQuery).matches)) {
       // replace the last "." with "@2x."
       provider = provider.replace(/\.(?!.*\.)/, "@2x.")
