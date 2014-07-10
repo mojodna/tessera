@@ -50,6 +50,7 @@ module.exports = function(opts, callback) {
         if (info.format === "pbf") {
           app.use("/_", serve(tilelive, "xray+" + opts.uri));
           app.use("/_", express.static(path.join(__dirname, "public")));
+          app.use("/_", express.static(path.join(__dirname, "bower_components")));
         }
       });
     });
@@ -68,6 +69,7 @@ module.exports = function(opts, callback) {
       }
 
       app.use(prefix, express.static(path.join(__dirname, "public")));
+      app.use(prefix, express.static(path.join(__dirname, "bower_components")));
       app.use(prefix, serve(tilelive, config[prefix]));
     });
   }
