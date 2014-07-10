@@ -1,5 +1,10 @@
 # Changes
 
+## v0.4.1 - 7/10/14
+
+* Fix relative links for nested files
+* Use `?retina=true` in the preview to force retina tiles
+
 ## v0.4.0 - 7/7/14
 
 * Use Nominatim for geocoding
