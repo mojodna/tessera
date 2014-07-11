@@ -1,5 +1,9 @@
 # Changes
 
+## vNext
+
+* Add `--source-cache-size` option
+
 ## v0.4.1 - 7/10/14
 
 * Fix relative links for nested files

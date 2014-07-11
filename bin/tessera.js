@@ -32,6 +32,13 @@ var nomnom = require("nomnom")
       help: "Require a specific tilelive module",
       list: true
     },
+    sourceCacheSize: {
+      full: "source-cache-size",
+      abbr: "S",
+      metavar: "SIZE",
+      help: "Set the source cache size (in # of sources)",
+      default: 10
+    },
     version: {
       abbr: "v",
       flag: true,

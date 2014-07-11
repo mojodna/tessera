@@ -112,11 +112,12 @@ Usage: node tessera.js [uri] [options]
 uri     tilelive URI to serve
 
 Options:
-   -C SIZE, --cache-size SIZE   Set the cache size (in MB)  [10]
-   -c CONFIG, --config CONFIG   Provide a configuration file
-   -p PORT, --port PORT         Set the HTTP Port  [8080]
-   -r MODULE, --require MODULE   Require a specific tilelive module
-   -v, --version                Show version info
+   -C SIZE, --cache-size SIZE          Set the cache size (in MB)  [10]
+   -c CONFIG, --config CONFIG          Provide a configuration file
+   -p PORT, --port PORT                Set the HTTP Port  [8080]
+   -r MODULE, --require MODULE         Require a specific tilelive module
+   -S SIZE, --source-cache-size SIZE   Set the source cache size (in # of sources)  [10]
+   -v, --version                       Show version info
 
 A tilelive URI or configuration file is required.
 ```
@@ -199,4 +200,7 @@ requests (effectively `/{z}/{x}/{y}@2x.{format}`).)
 * `CACHE_SIZE` - Cache size (in MB) for
   [tilelive-cache](https://github.com/mojodna/tilelive-cache). Defaults to
   10MB.
+* `SOURCE_CACHE_SIZE` - Number of sources to cache (for
+  [tilelive-cache](https://github.com/mojodna/tilelive-cache)). Defaults to 6.
+  *NOTE*: implicit retina versions count as an extra source.
 * `TESSERA_OPTS` - Additional command-line arguments.
