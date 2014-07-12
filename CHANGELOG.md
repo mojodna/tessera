@@ -1,7 +1,8 @@
 # Changes
 
-## vNext
+## v0.4.2 - 7/11/14
 
+* Don't assume that tilelive URIs will always be strings
 * Add `--source-cache-size` option
 
 ## v0.4.1 - 7/10/14
