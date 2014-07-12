@@ -1,5 +1,9 @@
 # Changes
 
+## v0.4.3 - 7/11/14
+
+* Don't coerce non-string tilelive URIs to strings, as `url.format` is lossy
+
 ## v0.4.2 - 7/11/14
 
 * Don't assume that tilelive URIs will always be strings
