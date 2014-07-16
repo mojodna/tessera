@@ -1,5 +1,9 @@
 # Changes
 
+## v0.4.4 - 7/16/14
+
+* Run bower non-interactively
+
 ## v0.4.3 - 7/11/14
 
 * Don't coerce non-string tilelive URIs to strings, as `url.format` is lossy
