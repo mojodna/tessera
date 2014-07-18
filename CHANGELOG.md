@@ -1,5 +1,10 @@
 # Changes
 
+## vNext
+
+* Remove verification of `Content-MD5` headers--that responsibility falls to
+  individual providers.
+
 ## v0.4.4 - 7/16/14
 
 * Run bower non-interactively
