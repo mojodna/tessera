@@ -2,6 +2,7 @@
 
 ## vNext
 
+* `options` is now optional in `modules.js`
 * Remove verification of `Content-MD5` headers--that responsibility falls to
   individual providers.
 
