@@ -2,6 +2,8 @@
 
 ## vNext
 
+* Update `tilelive-cache` with support for cache-skipping and fixes to
+  `tilelive-mapnik` drain errors
 * `options` is now optional in `modules.js`
 * Remove verification of `Content-MD5` headers--that responsibility falls to
   individual providers.

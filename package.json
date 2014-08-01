@@ -25,7 +25,7 @@
     "response-time": "^2.0.0",
     "sphericalmercator": "^1.0.2",
     "tilelive": "^5.0.1",
-    "tilelive-cache": "^0.2.0",
+    "tilelive-cache": "^0.4.0",
     "tilelive-modules": "^0.1.1"
   }
 }
