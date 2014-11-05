@@ -2,6 +2,7 @@
 
 ## vNext
 
+* Use `cachecache` to avoid requiring unnecessary rendering / fetching
 * Update `tilelive-cache` with support for cache-skipping and fixes to
   `tilelive-mapnik` drain errors
 * `options` is now optional in `modules.js`
