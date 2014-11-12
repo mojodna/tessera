@@ -28,7 +28,7 @@ module.exports = function(opts, callback) {
 
   if (process.env.NODE_ENV !== "production") {
     // TODO configurable logging per-style
-    app.use(morgan('dev'));
+    app.use(morgan("dev"));
   }
 
   if (opts.uri) {
