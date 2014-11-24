@@ -6,7 +6,6 @@
   "bin": "bin/tessera.js",
   "author": "Seth Fitzsimmons <seth@mojodna.net>",
   "license": "BSD-2-Clause",
-  "preferGlobal": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/mojodna/tessera.git"
