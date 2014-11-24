@@ -1,0 +1,8 @@
+*
+
+!lib/**
+!bin/**
+!public/**
+!bower_components/**
+!index.js
+!server.js
