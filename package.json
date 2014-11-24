@@ -1,6 +1,6 @@
 {
   "name": "tessera",
-  "version": "0.4.4",
+  "version": "0.5.0",
   "description": "A tilelive-based tile server",
   "main": "lib/app.js",
   "bin": "bin/tessera.js",
@@ -15,16 +15,16 @@
   },
   "dependencies": {
     "cachecache": "^1.0.1",
-    "clone": "^0.1.17",
-    "cors": "^2.2.0",
-    "express": "^4.1.0",
-    "handlebars": "^2.0.0-alpha.4",
-    "morgan": "^1.0.0",
-    "nomnom": "^1.6.2",
-    "response-time": "^2.0.0",
+    "clone": "^0.1.18",
+    "cors": "^2.5.2",
+    "express": "^4.10.3",
+    "handlebars": "^2.0.0",
+    "morgan": "^1.5.0",
+    "nomnom": "^1.8.1",
+    "response-time": "^2.2.0",
     "sphericalmercator": "^1.0.2",
-    "tilelive": "^5.0.1",
-    "tilelive-cache": "^0.4.0",
-    "tilelive-modules": "^0.1.1"
+    "tilelive": "^5.3.3",
+    "tilelive-cache": "^0.4.2",
+    "tilelive-modules": "^0.1.2"
   }
 }

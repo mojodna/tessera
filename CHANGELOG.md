@@ -1,7 +1,8 @@
 # Changes
 
-## vNext
+## v0.5.1 - 11/23/14
 
+* Update dependencies
 * Drop `bower` as a runtime dependency
 * Use `cachecache` to avoid requiring unnecessary rendering / fetching
 * Update `tilelive-cache` with support for cache-skipping and fixes to
@@ -9,6 +10,8 @@
 * `options` is now optional in `modules.js`
 * Remove verification of `Content-MD5` headers--that responsibility falls to
   individual providers.
+
+## v0.5.0 - unpublished
 
 ## v0.4.4 - 7/16/14
 
