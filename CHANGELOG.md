@@ -1,5 +1,9 @@
 # Changes
 
+## vNext
+
+* Relax expectations for empty tiles
+
 ## v0.5.1 - 11/23/14
 
 * Update dependencies
