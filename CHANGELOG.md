@@ -5,6 +5,7 @@
 * PBF sources that don't provide headers default to reporting `gzip` encoding
   to match current `tilelive-bridge`, etc. behavior
 * Relax expectations for empty tiles
+* Improve error logging when loading tilelive modules
 
 ## v0.5.1 - 11/23/14
 
