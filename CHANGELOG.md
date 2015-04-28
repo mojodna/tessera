@@ -6,6 +6,7 @@
   to match current `tilelive-bridge`, etc. behavior
 * Relax expectations for empty tiles
 * Improve error logging when loading tilelive modules
+* Use `debug` for warning messages about invalid requests
 
 ## v0.5.1 - 11/23/14
 
