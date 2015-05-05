@@ -1,6 +1,6 @@
 # Changes
 
-## vNext
+## v0.5.2 - 5/4/15
 
 * PBF sources that don't provide headers default to reporting `gzip` encoding
   to match current `tilelive-bridge`, etc. behavior
