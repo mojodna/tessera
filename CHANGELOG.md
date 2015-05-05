@@ -1,5 +1,9 @@
 # Changes
 
+## v0.5.3 - 5/4/15
+
+* Resolved missing `debug` dependency
+
 ## v0.5.2 - 5/4/15
 
 * PBF sources that don't provide headers default to reporting `gzip` encoding
