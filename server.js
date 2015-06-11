@@ -45,7 +45,8 @@ module.exports = function(opts, callback) {
 
       return tessera.getInfo(src, function(err, info) {
         if (err) {
-          throw err;
+          console.warn(err.stack);
+          return;
         }
 
         if (info.format === "pbf") {
