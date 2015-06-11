@@ -7,12 +7,15 @@ process.env.UV_THREADPOOL_SIZE = process.env.UV_THREADPOOL_SIZE || Math.ceil(Mat
 var path = require("path");
 
 var cors = require("cors"),
+    debug = require("debug"),
     express = require("express"),
     morgan = require("morgan"),
     responseTime = require("response-time");
 
 var serve = require("./lib/app"),
     tessera = require("./lib/index");
+
+debug = debug("tessera");
 
 module.exports = function(opts, callback) {
   var app = express().disable("x-powered-by"),
@@ -45,7 +48,7 @@ module.exports = function(opts, callback) {
 
       return tessera.getInfo(src, function(err, info) {
         if (err) {
-          console.warn(err.stack);
+          debug(err.stack);
           return;
         }
 
