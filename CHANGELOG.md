@@ -1,5 +1,9 @@
 # Changes
 
+## vNext
+
+* Support for @3x tiles
+
 ## v0.5.3 - 5/4/15
 
 * Resolved missing `debug` dependency
