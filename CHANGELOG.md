@@ -5,6 +5,7 @@
 * Support for @3x tiles
 * Don't treat `getInfo` errors as fatal on startup
 * Upgrade dependencies
+* Disable `tilelive-mapnik`'s internal cache
 
 ## v0.5.3 - 5/4/15
 
