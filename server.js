@@ -4,7 +4,9 @@
 // increase the libuv threadpool size to 1.5x the number of logical CPUs.
 process.env.UV_THREADPOOL_SIZE = process.env.UV_THREADPOOL_SIZE || Math.ceil(Math.max(4, require('os').cpus().length * 1.5));
 
-var path = require("path");
+var path = require("path"),
+    stream = require("stream"),
+    util = require("util");
 
 var cors = require("cors"),
     debug = require("debug"),
@@ -78,6 +80,104 @@ module.exports = function(opts, callback) {
       app.use(prefix, serve(tilelive, config[prefix]));
     });
   }
+
+  var mime = require("mime");
+  mime.define({
+    "application/x-protobuf": ["pbf"]
+  });
+  var normalizeHeaders = function(headers) {
+    var _headers = {};
+
+    Object.keys(headers).forEach(function(x) {
+      _headers[x.toLowerCase()] = headers[x];
+    });
+
+    return _headers;
+  };
+
+  var TileCollector = function() {
+    stream.Transform.call(this);
+
+    var chunks = [],
+        headers = {},
+        tile;
+
+    this.on("pipe", function(src) {
+      tile = src;
+    });
+
+    this.setHeader = function(header, value) {
+      headers[header] = value;
+    };
+
+    this._transform = function(chunk, encoding, callback) {
+      chunks.push(chunk);
+
+      return callback();
+    };
+
+    this._flush = function(callback) {
+      var buf = Buffer.concat(chunks);
+
+      // console.log("source URI:", source.sourceURI);
+      // console.log("tile %d/%d/%d", tile.z, tile.x, tile.y);
+      // console.log("headers:", headers);
+      // console.log("length:", buf.length);
+
+      headers = normalizeHeaders(headers);
+
+      var path = util.format("%d/%d/%d", tile.z, tile.x, tile.y);
+
+      if (tile.sourceURI.query.scale > 1) {
+        path += util.format("@%dx", tile.sourceURI.query.scale);
+      }
+
+      path += util.format(".%s", mime.extension(headers["content-type"]));
+
+      console.log("path:", path);
+
+      // console.log("extension:", mime.extension(headers["content-type"]));
+
+      return callback();
+    };
+  };
+
+  util.inherits(TileCollector, stream.Transform);
+
+  var Writable = function(source) {
+    stream.Writable.call(this, {
+      objectMode: true,
+      highWaterMark: 16 // arbitrary backlog sizing
+    });
+
+    this._write = function(tile, _, callback) {
+      // TODO tilelive-streaming should do this
+      tile.sourceURI = source.sourceURI;
+
+      tile.pipe(new TileCollector().on("finish", callback));
+    };
+  };
+
+  util.inherits(Writable, stream.Writable);
+
+  var sourceTarget = new stream.Writable({
+    objectMode: true
+  });
+
+  sourceTarget._write = function(source, _, callback) {
+    // source.getInfo(function(err, info) {
+    //   // i need the URI
+    //   console.log("source URI:", source.sourceURI);
+    //   console.log(arguments);
+    // });
+
+    source.pipe(new Writable(source));
+
+    return callback();
+  };
+
+  tilelive.pipe(sourceTarget);
+
 
   app.listen(process.env.PORT || opts.port, function() {
     console.log("Listening at http://%s:%d/", this.address().address, this.address().port);
