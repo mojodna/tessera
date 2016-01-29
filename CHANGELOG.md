@@ -1,5 +1,9 @@
 # Changes
 
+## v0.6.1
+
+* Don't return upstream headers with 404s
+
 ## v0.6.0 - 12/9/15
 
 * Support for @3x tiles
