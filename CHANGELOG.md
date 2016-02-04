@@ -1,5 +1,9 @@
 # Changes
 
+## v0.7.0 - 2/3/16
+
+* `conf.d` style configuration when `--config` points to a directory
+
 ## v0.6.1 - 2/3/16
 
 * Don't return upstream headers with 404s

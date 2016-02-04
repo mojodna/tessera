@@ -113,7 +113,7 @@ uri     tilelive URI to serve
 
 Options:
    -C SIZE, --cache-size SIZE          Set the cache size (in MB)  [10]
-   -c CONFIG, --config CONFIG          Provide a configuration file
+   -c CONFIG, --config CONFIG          Provide a configuration file or directory
    -p PORT, --port PORT                Set the HTTP Port  [8080]
    -r MODULE, --require MODULE         Require a specific tilelive module
    -S SIZE, --source-cache-size SIZE   Set the source cache size (in # of sources)  [10]
@@ -193,6 +193,10 @@ The default tile path is:
 
 (_Note_: the final `.` will be expanded to transparently support retina
 requests (effectively `/{z}/{x}/{y}@2x.{format}`).)
+
+If `--config` is set to a directory, all JSON files in it will be concatenated
+together to form a single configuration. In the case of repeated options or
+paths, the last one will win (where files are loaded in alphabetical order).
 
 ## Environment Variables
 

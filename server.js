@@ -4,7 +4,8 @@
 // increase the libuv threadpool size to 1.5x the number of logical CPUs.
 process.env.UV_THREADPOOL_SIZE = process.env.UV_THREADPOOL_SIZE || Math.ceil(Math.max(4, require('os').cpus().length * 1.5));
 
-var path = require("path");
+var fs = require("fs"),
+    path = require("path");
 
 var cors = require("cors"),
     debug = require("debug"),
@@ -62,7 +63,27 @@ module.exports = function(opts, callback) {
   }
 
   if (opts.config) {
-    var config = require(path.resolve(opts.config));
+    var configPath = path.resolve(opts.config),
+        stats = fs.statSync(configPath),
+        config = {};
+
+    if (stats.isFile()) {
+      config = require(configPath);
+    } else if (stats.isDirectory()) {
+      config = fs.readdirSync(configPath)
+        .filter(function(filename) {
+          return path.extname(filename) === ".json";
+        })
+        .reduce(function(config, filename) {
+          var localConfig = require(path.join(configPath, filename));
+
+          return Object.keys(localConfig).reduce(function(config, k) {
+            config[k] = localConfig[k];
+
+            return config;
+          }, config);
+        }, config);
+    }
 
     Object.keys(config).forEach(function(prefix) {
       if (config[prefix].timing !== false) {

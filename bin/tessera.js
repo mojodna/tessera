@@ -18,7 +18,7 @@ var nomnom = require("nomnom")
     config: {
       abbr: "c",
       metavar: "CONFIG",
-      help: "Provide a configuration file"
+      help: "Provide a configuration file or directory"
     },
     port: {
       abbr: "p",
