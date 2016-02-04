@@ -1,6 +1,6 @@
 # Changes
 
-## v0.6.1
+## v0.6.1 - 2/3/16
 
 * Don't return upstream headers with 404s
 
