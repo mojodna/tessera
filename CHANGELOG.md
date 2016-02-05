@@ -1,5 +1,10 @@
 # Changes
 
+## v0.7.1 - 2/5/16
+
+* Add missing `LICENSE`
+* Re-publish (`server.js` was missing in v0.7.0)
+
 ## v0.7.0 - 2/3/16
 
 * `conf.d` style configuration when `--config` points to a directory
