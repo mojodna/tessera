@@ -1,9 +1,10 @@
 # Changes
 
-## v0.8.0
+## v0.8.0 - 2/16/16
 
 * Use shared loader from `tilelive-modules`
 * Upgrade to `tilelive-cache@0.6.1` w/ improved source closing
+* Upgrade to `handlebars@^4.0.5`
 
 ## v0.7.1 - 2/5/16
 

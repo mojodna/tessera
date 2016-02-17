@@ -20,7 +20,7 @@
     "cors": "^2.5.2",
     "debug": "^2.1.3",
     "express": "^4.10.3",
-    "handlebars": "^3.0.3",
+    "handlebars": "^4.0.5",
     "morgan": "^1.5.0",
     "nomnom": "^1.8.1",
     "response-time": "^2.2.0",
