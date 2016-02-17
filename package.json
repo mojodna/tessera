@@ -27,6 +27,6 @@
     "sphericalmercator": "^1.0.2",
     "tilelive": "^5.3.3",
     "tilelive-cache": "^0.4.2",
-    "tilelive-modules": "^0.1.2"
+    "tilelive-modules": "^0.2.0"
   }
 }

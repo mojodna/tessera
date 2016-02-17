@@ -1,5 +1,9 @@
 # Changes
 
+## v0.8.0
+
+* Use shared loader from `tilelive-modules`
+
 ## v0.7.1 - 2/5/16
 
 * Add missing `LICENSE`
