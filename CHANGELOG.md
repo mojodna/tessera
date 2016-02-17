@@ -3,6 +3,7 @@
 ## v0.8.0
 
 * Use shared loader from `tilelive-modules`
+* Upgrade to `tilelive-cache@0.6.1` w/ improved source closing
 
 ## v0.7.1 - 2/5/16
 
