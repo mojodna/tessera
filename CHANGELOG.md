@@ -1,5 +1,9 @@
 # Changes
 
+## v0.8.1
+
+* Correctly handle "Tile does not exist" errors (@JesseCrocker)
+
 ## v0.8.0 - 2/16/16
 
 * Use shared loader from `tilelive-modules`
