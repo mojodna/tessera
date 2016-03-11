@@ -3,6 +3,7 @@
 ## v0.8.1
 
 * Correctly handle "Tile does not exist" errors (@JesseCrocker)
+* Use `Infinity` as the default max zoom
 
 ## v0.8.0 - 2/16/16
 
