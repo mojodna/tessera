@@ -1,9 +1,10 @@
 # Changes
 
-## v0.8.1
+## v0.8.1 3/11/16
 
 * Correctly handle "Tile does not exist" errors (@JesseCrocker)
 * Use `Infinity` as the default max zoom
+* Add `?retina=false` to the URL to disable retina tiles
 
 ## v0.8.0 - 2/16/16
 
