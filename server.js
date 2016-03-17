@@ -100,7 +100,7 @@ module.exports = function(opts, callback) {
     });
   }
 
-  app.listen(process.env.PORT || opts.port, function() {
+  app.listen(process.env.PORT || opts.port, process.env.HOST || opts.bind, function() {
     console.log("Listening at http://%s:%d/", this.address().address, this.address().port);
 
     return callback();

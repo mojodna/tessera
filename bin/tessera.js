@@ -26,6 +26,12 @@ var nomnom = require("nomnom")
       help: "Set the HTTP Port",
       default: 8080
     },
+    bind: {
+      abbr: "b",
+      metavar: "HOST",
+      help: "Set interface to listen on",
+      default: "0.0.0.0"
+    },
     require: {
       abbr: "r",
       metavar: "MODULE",
