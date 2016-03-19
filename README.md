@@ -115,6 +115,7 @@ Options:
    -C SIZE, --cache-size SIZE          Set the cache size (in MB)  [10]
    -c CONFIG, --config CONFIG          Provide a configuration file or directory
    -p PORT, --port PORT                Set the HTTP Port  [8080]
+   -b HOST, --bind HOST                Set interface to listen on [0.0.0.0]
    -r MODULE, --require MODULE         Require a specific tilelive module
    -S SIZE, --source-cache-size SIZE   Set the source cache size (in # of sources)  [10]
    -v, --version                       Show version info
@@ -201,6 +202,7 @@ paths, the last one will win (where files are loaded in alphabetical order).
 ## Environment Variables
 
 * `PORT` - Port to bind to. Defaults to `8080`.
+* `HOST` - Interface to listen on. Defaults to `0.0.0.0` (all).
 * `CACHE_SIZE` - Cache size (in MB) for
   [tilelive-cache](https://github.com/mojodna/tilelive-cache). Defaults to
   10MB.
