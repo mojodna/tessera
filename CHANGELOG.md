@@ -1,6 +1,11 @@
 # Changes
 
-## v0.8.1 3/11/16
+## v0.9.0 - 4/5/16
+
+* Use active protocol when generating `tiles` elements in TileJSON (@ramunasd)
+* Return 200 responses for empty vector tiles (@ramunasd)
+
+## v0.8.1 - 3/11/16
 
 * Correctly handle "Tile does not exist" errors (@JesseCrocker)
 * Use `Infinity` as the default max zoom
