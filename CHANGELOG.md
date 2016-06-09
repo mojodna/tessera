@@ -1,5 +1,35 @@
 # Changes
 
+## v0.9.0 - 4/5/16
+
+* Use active protocol when generating `tiles` elements in TileJSON (@ramunasd)
+* Return 200 responses for empty vector tiles (@ramunasd)
+
+## v0.8.1 - 3/11/16
+
+* Correctly handle "Tile does not exist" errors (@JesseCrocker)
+* Use `Infinity` as the default max zoom
+* Add `?retina=false` to the URL to disable retina tiles
+
+## v0.8.0 - 2/16/16
+
+* Use shared loader from `tilelive-modules`
+* Upgrade to `tilelive-cache@0.6.1` w/ improved source closing
+* Upgrade to `handlebars@^4.0.5`
+
+## v0.7.1 - 2/5/16
+
+* Add missing `LICENSE`
+* Re-publish (`server.js` was missing in v0.7.0)
+
+## v0.7.0 - 2/3/16
+
+* `conf.d` style configuration when `--config` points to a directory
+
+## v0.6.1 - 2/3/16
+
+* Don't return upstream headers with 404s
+
 ## v0.6.0 - 12/9/15
 
 * Support for @3x tiles
