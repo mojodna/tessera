@@ -45,6 +45,12 @@ var nomnom = require("nomnom")
       help: "Set the source cache size (in # of sources)",
       default: 10
     },
+    socket: {
+      full: "socket",
+      abbr: "s",
+      metavar: "SOCKET",
+      help: "Listen on unix socket"
+    },
     version: {
       abbr: "v",
       flag: true,

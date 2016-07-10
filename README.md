@@ -118,6 +118,7 @@ Options:
    -b HOST, --bind HOST                Set interface to listen on [0.0.0.0]
    -r MODULE, --require MODULE         Require a specific tilelive module
    -S SIZE, --source-cache-size SIZE   Set the source cache size (in # of sources)  [10]
+   -s SOCKET, --socket SOCKET          Listen on unix socket
    -v, --version                       Show version info
 
 A tilelive URI or configuration file is required.
