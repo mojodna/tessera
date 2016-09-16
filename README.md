@@ -232,6 +232,7 @@ will set the following variables:
 * `CACHE_SIZE` - Cache size (in MB) for
   [tilelive-cache](https://github.com/mojodna/tilelive-cache). Defaults to
   10MB.
+* `SOCKET` - Unix socket to bind to. Optional.
 * `SOURCE_CACHE_SIZE` - Number of sources to cache (for
   [tilelive-cache](https://github.com/mojodna/tilelive-cache)). Defaults to 6.
   *NOTE*: implicit retina versions count as an extra source.
