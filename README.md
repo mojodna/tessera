@@ -199,6 +199,31 @@ If `--config` is set to a directory, all JSON files in it will be concatenated
 together to form a single configuration. In the case of repeated options or
 paths, the last one will win (where files are loaded in alphabetical order).
 
+For sources that render rasters from vector tiles at and have a max zoom level 
+that is higher than the max zoom level of the vector tiles it can be helpful to 
+have additional variables available for headers that represent the vector tile 
+that a raster was rendered from. This can be enabled with an additional source 
+option in the configuration file:
+
+```javascript
+{
+  "sourceMaxZoom": 14
+}
+```
+
+This will make three additional values available for header templates:
+* `tile.sourceZoom`
+* `tile.sourceX`
+* `tile.sourceY`
+
+For example: if `sourceMaxZoom` is set to 14, a request for tile 16/100/100 
+will set the following variables:
+
+* `tile.sourceZoom = 14`
+* `tile.sourceX = 25`
+* `tile.sourceY = 25`
+
+
 ## Environment Variables
 
 * `PORT` - Port to bind to. Defaults to `8080`.
