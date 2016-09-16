@@ -105,7 +105,14 @@ module.exports = function(opts, callback) {
     var endpoint;
     if (opts.socket) {
       endpoint = opts.socket;
-      fs.chmodSync(opts.socket, '1766');
+
+      // allow the socket to be accessed by other users/groups
+      fs.chmodSync(opts.socket, "1766");
+    } else if (process.env.SOCKET) {
+      endpoint = process.env.SOCKET;
+
+      // allow the socket to be accessed by other users/groups
+      fs.chmodSync(opts.socket, "1766");
     } else {
       endpoint = "http://" + this.address().address + ':' + this.address().port;
     }
