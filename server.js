@@ -100,9 +100,23 @@ module.exports = function(opts, callback) {
     });
   }
 
-  app.listen(process.env.PORT || opts.port, process.env.HOST || opts.bind, function() {
-    console.log("Listening at http://%s:%d/", this.address().address, this.address().port);
+  var handler = process.env.SOCKET || opts.socket || process.env.PORT || opts.port;
+  var server = app.listen(handler, process.env.HOST || opts.bind, function() {
+    var endpoint;
+    if (opts.socket) {
+      endpoint = opts.socket;
+      fs.chmodSync(opts.socket, '1766');
+    } else {
+      endpoint = "http://" + this.address().address + ':' + this.address().port;
+    }
+    console.log("Listening at %s", endpoint);
 
     return callback();
+  });
+
+  process.on('SIGINT', function () {
+    console.warn('Caught SIGINT, terminating');
+    server.close();
+    process.exit();
   });
 };
