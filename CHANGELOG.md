@@ -1,5 +1,12 @@
 # Changes
 
+## v0.10.0
+
+* Adding `sourceMaxZoom` to the config makes `tile.sourceZoom`, `tile.sourceX`,
+  and `tile.sourceY` available to header templates (useful for rasters rendered
+  from vector tiles)
+* Add unix socket support (@stepankuzmin)
+
 ## v0.9.0 - 4/5/16
 
 * Use active protocol when generating `tiles` elements in TileJSON (@ramunasd)
