@@ -6,6 +6,7 @@
   and `tile.sourceY` available to header templates (useful for rasters rendered
   from vector tiles)
 * Add unix socket support (@stepankuzmin)
+* Respect `X-Forwarded-Proto` when generating TileJSON (@bwhtmn)
 
 ## v0.9.0 - 4/5/16
 
