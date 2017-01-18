@@ -1,5 +1,9 @@
 # Changes
 
+## v0.10.1
+
+* Respect `X-Forwarded-Proto` when generating TileJSON (@bwhtmn)
+
 ## v0.10.0
 
 * Adding `sourceMaxZoom` to the config makes `tile.sourceZoom`, `tile.sourceX`,
