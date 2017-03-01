@@ -33,6 +33,14 @@ npm install -g mbtiles
 tessera mbtiles://./whatever.mbtiles
 ```
 
+_Note_: if your [MBTiles](https://www.mapbox.com/developers/mbtiles/) are in
+"pbf" format (instead of "png"), you may also need:
+
+```bash
+npm install -g tile-vector
+npm install -g tile-xray
+```
+
 To serve up a [TileMill](https://www.mapbox.com/tilemill/) (or
 [Carto](https://github.com/mapbox/carto)) project using
 [tilelive-carto](https://github.com/mojodna/tilelive-carto):
