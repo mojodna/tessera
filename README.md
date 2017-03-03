@@ -37,8 +37,8 @@ _Note_: if your [MBTiles](https://www.mapbox.com/developers/mbtiles/) are in
 "pbf" format (instead of "png"), you may also need:
 
 ```bash
-npm install -g tile-vector
-npm install -g tile-xray
+npm install -g tilelive-vector
+npm install -g tilelive-xray
 ```
 
 To serve up a [TileMill](https://www.mapbox.com/tilemill/) (or
