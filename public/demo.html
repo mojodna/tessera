@@ -219,7 +219,7 @@
 				fillOpacity: 0.2,
 				opacity: 0.8
 			},
-			 
+
 
 			BP: {
 				weight: 1,
@@ -241,36 +241,36 @@
 		vectorTileStyling.roads      = vectorTileStyling.road;
 
 
-		var custommapboxUrl = "/a/{z}/{x}/{y}.pbf";
+		var custommapboxUrl = "/operators/arx/{z}/{x}/{y}.pbf";
 		var custommapboxVectorTileOptions = {
 			rendererFactory: L.canvas.tile,
 			vectorTileLayerStyles: vectorTileStyling
-		
+
 		};
 		var custommapboxPbfLayer = L.vectorGrid.protobuf(custommapboxUrl, custommapboxVectorTileOptions);
 
-		var bxeUrl = "/bxe/{z}/{x}/{y}.pbf";
+		var bxeUrl = "/operators/bxe/{z}/{x}/{y}.pbf";
 		var bxemapboxVectorTileOptions = {
 			rendererFactory: L.canvas.tile,
 			vectorTileLayerStyles: vectorTileStyling
-		
+
 		};
 		var bxe_layer = L.vectorGrid.protobuf(bxeUrl, bxemapboxVectorTileOptions);
 
 
-		var bpUrl = "/bp/{z}/{x}/{y}.pbf";
+		var bpUrl = "/operators/bp/{z}/{x}/{y}.pbf";
 		var bpmapboxVectorTileOptions = {
 			rendererFactory: L.canvas.tile,
 			vectorTileLayerStyles: vectorTileStyling
-		
+
 		};
 		var bp_layer = L.vectorGrid.protobuf(bpUrl, bpmapboxVectorTileOptions);
 
-		var eog_url = "/eog/{z}/{x}/{y}.pbf";
+		var eog_url = "/operators/eog/{z}/{x}/{y}.pbf";
 		var eog_options = {
 			rendererFactory: L.canvas.tile,
 			vectorTileLayerStyles: vectorTileStyling
-		
+
 		};
 		var eog_layer = L.vectorGrid.protobuf(eog_url, eog_options);
 
@@ -421,7 +421,7 @@
 			"ARX": custommapboxPbfLayer,
 			"EOG": eog_layer,
 			"BXE": bxe_layer,
-			"BP": bp_layer			
+			"BP": bp_layer
 		}, {}, {collapsed: false}).addTo(map);
 
 	</script>
