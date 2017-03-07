@@ -97,7 +97,7 @@ module.exports = function(opts, callback) {
       app.use(prefix, express.static(path.join(__dirname, "public")));
       app.use(prefix, express.static(path.join(__dirname, "bower_components")));
       app.use(prefix, serve(tilelive, config[prefix]));
-      tilelive.load(config[prefix], function(err, src) {
+      tilelive.load(config[prefix].source, function(err, src) {
         if (err) {
           throw err;
         }
@@ -109,7 +109,7 @@ module.exports = function(opts, callback) {
           }
 
           if (info.format === "pbf") {
-            app.use(prefix + "/_", serve(tilelive, "xray+" + config[prefix]));
+            app.use(prefix + "/_", serve(tilelive, "xray+" + config[prefix].source));
             app.use(prefix + "/_", express.static(path.join(__dirname, "public")));
             app.use(prefix + "/_", express.static(path.join(__dirname, "bower_components")));
           }
