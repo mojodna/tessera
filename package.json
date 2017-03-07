@@ -21,12 +21,15 @@
     "debug": "^2.1.3",
     "express": "^4.10.3",
     "handlebars": "^4.0.5",
+    "mbtiles": "^0.9.0",
     "morgan": "^1.5.0",
     "nomnom": "^1.8.1",
     "response-time": "^2.2.0",
     "sphericalmercator": "^1.0.2",
     "tilelive": "^5.3.3",
     "tilelive-cache": "^0.6.1",
-    "tilelive-modules": "^0.2.0"
+    "tilelive-modules": "^0.2.0",
+    "tilelive-vector": "^3.9.4",
+    "tilelive-xray": "^0.3.0"
   }
 }
