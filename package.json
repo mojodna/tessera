@@ -11,7 +11,8 @@
     "url": "https://github.com/mojodna/tessera.git"
   },
   "scripts": {
-    "prepublish": "npm install bower && bower install"
+    "prepublish": "npm install bower && bower install",
+    "test": "mocha"
   },
   "dependencies": {
     "abaculus": "^1.2.1",
@@ -28,5 +29,10 @@
     "tilelive": "^5.3.3",
     "tilelive-cache": "^0.6.1",
     "tilelive-modules": "^0.2.0"
+  },
+  "devDependencies": {
+    "mocha": "^1.18.0",
+    "supertest": "^0.3",
+    "mbtiles": "^0.2.9"
   }
 }
