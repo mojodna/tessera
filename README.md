@@ -33,12 +33,10 @@ npm install -g mbtiles
 tessera mbtiles://./whatever.mbtiles
 ```
 
-_Note_: if your [MBTiles](https://www.mapbox.com/developers/mbtiles/) are in
-"pbf" format (instead of "png"), you may also need:
+_Note_: If you want to be able to preview vector tiles (MVT/PBF), you need these 2 modules:
 
 ```bash
-npm install -g tilelive-vector
-npm install -g tilelive-xray
+npm install -g tilelive-vector tilelive-xray
 ```
 
 To serve up a [TileMill](https://www.mapbox.com/tilemill/) (or
