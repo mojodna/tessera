@@ -33,6 +33,12 @@ npm install -g mbtiles
 tessera mbtiles://./whatever.mbtiles
 ```
 
+_Note_: If you want to be able to preview vector tiles (MVT/PBF), you need these 2 modules:
+
+```bash
+npm install -g tilelive-vector tilelive-xray
+```
+
 To serve up a [TileMill](https://www.mapbox.com/tilemill/) (or
 [Carto](https://github.com/mapbox/carto)) project using
 [tilelive-carto](https://github.com/mojodna/tilelive-carto):
