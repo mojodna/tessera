@@ -8,6 +8,7 @@
 * Add unix socket support (@stepankuzmin)
 * Respect `X-Forwarded-Proto` when generating TileJSON (@bwhtmn)
 * Allow PBFs to be served (and previewed) when using config files (@ianhuynh)
+* Always return 404s for absent data, even for PBFs
 
 ## v0.9.0 - 4/5/16
 
