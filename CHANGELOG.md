@@ -1,6 +1,6 @@
 # Changes
 
-## v0.10.0
+## v0.10.0 - 3/15/17
 
 * Adding `sourceMaxZoom` to the config makes `tile.sourceZoom`, `tile.sourceX`,
   and `tile.sourceY` available to header templates (useful for rasters rendered
