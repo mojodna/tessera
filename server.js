@@ -97,7 +97,16 @@ module.exports = function(opts, callback) {
       app.use(prefix, express.static(path.join(__dirname, "public")));
       app.use(prefix, express.static(path.join(__dirname, "bower_components")));
       app.use(prefix, serve(tilelive, config[prefix]));
-      tilelive.load(config[prefix].source, function(err, src) {
+
+      // config[prefix] is a string
+      var source = config[prefix];
+
+      if (source.source != null) {
+        // actually, it's an object
+        source = source.source;
+      }
+
+      tilelive.load(source, function(err, src) {
         if (err) {
           throw err;
         }

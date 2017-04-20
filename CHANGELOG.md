@@ -1,5 +1,9 @@
 # Changes
 
+## v0.10.1 - 4/20/17
+
+* Support for string URIs as values in config files.
+
 ## v0.10.0 - 3/15/17
 
 * Adding `sourceMaxZoom` to the config makes `tile.sourceZoom`, `tile.sourceX`,
