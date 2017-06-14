@@ -1,5 +1,9 @@
 # Changes
 
+## v0.11.2 - 6/14/17
+
+* Update `tilelive-modules` for compatibility with `@mapbox`-scoped modules.
+
 ## v0.11.1 - 6/14/17
 
 * Fix dependency `require`s.
