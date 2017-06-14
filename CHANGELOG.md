@@ -1,5 +1,9 @@
 # Changes
 
+## v0.11.1 - 6/14/17
+
+* Fix dependency `require`s.
+
 ## v0.11.0 - 6/13/17
 
 * Upgrade dependencies.

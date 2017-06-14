@@ -20,7 +20,7 @@ debug = debug("tessera");
 
 module.exports = function(opts, callback) {
   var app = express().disable("x-powered-by"),
-      tilelive = require("tilelive-cache")(require("tilelive"), {
+      tilelive = require("tilelive-cache")(require("@mapbox/tilelive"), {
         size: process.env.CACHE_SIZE || opts.cacheSize,
         sources: process.env.SOURCE_CACHE_SIZE || opts.sourceCacheSize
       });
