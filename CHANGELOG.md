@@ -1,5 +1,9 @@
 # Changes
 
+## v0.11.0 - 6/13/17
+
+* Upgrade dependencies.
+
 ## v0.10.1 - 4/20/17
 
 * Support for string URIs as values in config files.
