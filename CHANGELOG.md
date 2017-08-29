@@ -1,5 +1,31 @@
 # Changes
 
+## v0.11.2 - 6/14/17
+
+* Update `tilelive-modules` for compatibility with `@mapbox`-scoped modules.
+
+## v0.11.1 - 6/14/17
+
+* Fix dependency `require`s.
+
+## v0.11.0 - 6/13/17
+
+* Upgrade dependencies.
+
+## v0.10.1 - 4/20/17
+
+* Support for string URIs as values in config files.
+
+## v0.10.0 - 3/15/17
+
+* Adding `sourceMaxZoom` to the config makes `tile.sourceZoom`, `tile.sourceX`,
+  and `tile.sourceY` available to header templates (useful for rasters rendered
+  from vector tiles)
+* Add unix socket support (@stepankuzmin)
+* Respect `X-Forwarded-Proto` when generating TileJSON (@bwhtmn)
+* Allow PBFs to be served (and previewed) when using config files (@ianhuynh)
+* Always return 404s for absent data, even for PBFs
+
 ## v0.9.0 - 4/5/16
 
 * Use active protocol when generating `tiles` elements in TileJSON (@ramunasd)

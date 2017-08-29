@@ -33,6 +33,12 @@ npm install -g mbtiles
 tessera mbtiles://./whatever.mbtiles
 ```
 
+_Note_: If you want to be able to preview vector tiles (MVT/PBF), you need these 2 modules:
+
+```bash
+npm install -g tilelive-vector tilelive-xray
+```
+
 To serve up a [TileMill](https://www.mapbox.com/tilemill/) (or
 [Carto](https://github.com/mapbox/carto)) project using
 [tilelive-carto](https://github.com/mojodna/tilelive-carto):
@@ -118,6 +124,7 @@ Options:
    -b HOST, --bind HOST                Set interface to listen on [0.0.0.0]
    -r MODULE, --require MODULE         Require a specific tilelive module
    -S SIZE, --source-cache-size SIZE   Set the source cache size (in # of sources)  [10]
+   -s SOCKET, --socket SOCKET          Listen on unix socket
    -v, --version                       Show version info
 
 A tilelive URI or configuration file is required.
@@ -199,6 +206,31 @@ If `--config` is set to a directory, all JSON files in it will be concatenated
 together to form a single configuration. In the case of repeated options or
 paths, the last one will win (where files are loaded in alphabetical order).
 
+For sources that render rasters from vector tiles at and have a max zoom level 
+that is higher than the max zoom level of the vector tiles it can be helpful to 
+have additional variables available for headers that represent the vector tile 
+that a raster was rendered from. This can be enabled with an additional source 
+option in the configuration file:
+
+```javascript
+{
+  "sourceMaxZoom": 14
+}
+```
+
+This will make three additional values available for header templates:
+* `tile.sourceZoom`
+* `tile.sourceX`
+* `tile.sourceY`
+
+For example: if `sourceMaxZoom` is set to 14, a request for tile 16/100/100 
+will set the following variables:
+
+* `tile.sourceZoom = 14`
+* `tile.sourceX = 25`
+* `tile.sourceY = 25`
+
+
 ## Environment Variables
 
 * `PORT` - Port to bind to. Defaults to `8080`.
@@ -206,6 +238,7 @@ paths, the last one will win (where files are loaded in alphabetical order).
 * `CACHE_SIZE` - Cache size (in MB) for
   [tilelive-cache](https://github.com/mojodna/tilelive-cache). Defaults to
   10MB.
+* `SOCKET` - Unix socket to bind to. Optional.
 * `SOURCE_CACHE_SIZE` - Number of sources to cache (for
   [tilelive-cache](https://github.com/mojodna/tilelive-cache)). Defaults to 6.
   *NOTE*: implicit retina versions count as an extra source.

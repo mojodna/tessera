@@ -20,7 +20,7 @@ debug = debug("tessera");
 
 module.exports = function(opts, callback) {
   var app = express().disable("x-powered-by"),
-      tilelive = require("tilelive-cache")(require("tilelive"), {
+      tilelive = require("tilelive-cache")(require("@mapbox/tilelive"), {
         size: process.env.CACHE_SIZE || opts.cacheSize,
         sources: process.env.SOURCE_CACHE_SIZE || opts.sourceCacheSize
       });
@@ -97,12 +97,60 @@ module.exports = function(opts, callback) {
       app.use(prefix, express.static(path.join(__dirname, "public")));
       app.use(prefix, express.static(path.join(__dirname, "bower_components")));
       app.use(prefix, serve(tilelive, config[prefix]));
+
+      // config[prefix] is a string
+      var source = config[prefix];
+
+      if (source.source != null) {
+        // actually, it's an object
+        source = source.source;
+      }
+
+      tilelive.load(source, function(err, src) {
+        if (err) {
+          throw err;
+        }
+
+        return tessera.getInfo(src, function(err, info) {
+          if (err) {
+            debug(err.stack);
+            return;
+          }
+
+          if (info.format === "pbf") {
+            app.use(prefix + "/_", serve(tilelive, "xray+" + config[prefix].source));
+            app.use(prefix + "/_", express.static(path.join(__dirname, "public")));
+            app.use(prefix + "/_", express.static(path.join(__dirname, "bower_components")));
+          }
+        });
+      });
     });
   }
 
-  app.listen(process.env.PORT || opts.port, process.env.HOST || opts.bind, function() {
-    console.log("Listening at http://%s:%d/", this.address().address, this.address().port);
+  var handler = process.env.SOCKET || opts.socket || process.env.PORT || opts.port;
+  var server = app.listen(handler, process.env.HOST || opts.bind, function() {
+    var endpoint;
+    if (opts.socket) {
+      endpoint = opts.socket;
+
+      // allow the socket to be accessed by other users/groups
+      fs.chmodSync(opts.socket, "1766");
+    } else if (process.env.SOCKET) {
+      endpoint = process.env.SOCKET;
+
+      // allow the socket to be accessed by other users/groups
+      fs.chmodSync(opts.socket, "1766");
+    } else {
+      endpoint = "http://" + this.address().address + ':' + this.address().port;
+    }
+    console.log("Listening at %s", endpoint);
 
     return callback();
+  });
+
+  process.on('SIGINT', function () {
+    console.warn('Caught SIGINT, terminating');
+    server.close();
+    process.exit();
   });
 };

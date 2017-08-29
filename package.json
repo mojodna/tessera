@@ -1,6 +1,6 @@
 {
   "name": "tessera",
-  "version": "0.9.0",
+  "version": "0.11.2",
   "description": "A tilelive-based tile server",
   "main": "lib/app.js",
   "bin": "bin/tessera.js",
@@ -14,7 +14,7 @@
     "prepublish": "npm install bower && bower install"
   },
   "dependencies": {
-    "abaculus": "^1.2.1",
+    "@mapbox/abaculus": "^2.1.0",
     "cachecache": "^1.0.1",
     "clone": "^1.0.2",
     "cors": "^2.5.2",
@@ -24,9 +24,9 @@
     "morgan": "^1.5.0",
     "nomnom": "^1.8.1",
     "response-time": "^2.2.0",
-    "sphericalmercator": "^1.0.2",
-    "tilelive": "^5.3.3",
-    "tilelive-cache": "^0.6.1",
-    "tilelive-modules": "^0.2.0"
+    "@mapbox/sphericalmercator": "^1.0.2",
+    "@mapbox/tilelive": "^5.3.3",
+    "tilelive-cache": "^0.7.1",
+    "tilelive-modules": "^0.3.4"
   }
 }
