@@ -32,12 +32,16 @@ var nomnom = require("nomnom")
       help: "Set interface to listen on",
       default: "0.0.0.0"
     },
-    cluster: {
-      full: "cluster",
+    multithreaded : {
+      full: "multithreaded",
       flag: true,
-      metavar: "CLUSTER",
       default: false,
-      help: "Start 1 thread per CPU"
+      help: "Start multiple threads"
+    },
+    threads : {
+      full: "threads",
+      default: require('os').cpus().length,
+      help: "Number of threads to start"
     },
     require: {
       abbr: "r",
@@ -82,12 +86,11 @@ if(opts.version) {
   return process.exit();
 } else if(!opts.uri && !opts.config) {
   return nomnom.print(nomnom.getUsage());
-} else if(opts.cluster) {
-  console.log("Launching in cluster mode");
+} else if(opts.multithreaded) {
+  console.log("Launching in multithreaded mode with " + opts.threads + " threads.");
   var cluster = require('cluster');
   if (cluster.isMaster) {
-    var cpuCount = require('os').cpus().length;
-    for (var i = 0; i < cpuCount; i += 1) {
+    for (var i = 0; i < opts.threads; i += 1) {
         cluster.fork();
     }
   } else {
