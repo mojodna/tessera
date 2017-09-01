@@ -32,6 +32,14 @@ var nomnom = require("nomnom")
       help: "Set interface to listen on",
       default: "0.0.0.0"
     },
+    cluster: {
+      full: "cluster",
+      abbr: "c",
+      flag: true,
+      metavar: "CLUSTER",
+      default: false,
+      help: "Start 1 thread per CPU"
+    },
     require: {
       abbr: "r",
       metavar: "MODULE",
@@ -71,13 +79,21 @@ var argv = (process.env.TESSERA_OPTS || "")
 
 var opts = nomnom.parse(argv);
 
-switch (true) {
-case opts.version:
+if(opts.version) {
   return process.exit();
-
-case !opts.uri && !opts.config:
+} else if(!opts.uri && !opts.config) {
   return nomnom.print(nomnom.getUsage());
-
-default:
+} else if(opts.cluster) {
+  console.log("Launching in cluster mode");
+  var cluster = require('cluster');
+  if (cluster.isMaster) {
+    var cpuCount = require('os').cpus().length;
+    for (var i = 0; i < cpuCount; i += 1) {
+        cluster.fork();
+    }
+  } else {
+    return require("../server")(opts);
+  }
+} else {
   return require("../server")(opts);
 }
