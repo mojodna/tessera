@@ -34,7 +34,6 @@ var nomnom = require("nomnom")
     },
     cluster: {
       full: "cluster",
-      abbr: "c",
       flag: true,
       metavar: "CLUSTER",
       default: false,
