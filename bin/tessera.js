@@ -87,9 +87,9 @@ if(opts.version) {
 } else if(!opts.uri && !opts.config) {
   return nomnom.print(nomnom.getUsage());
 } else if(opts.multithreaded) {
-  console.log("Launching in multithreaded mode with " + opts.threads + " threads.");
   var cluster = require('cluster');
   if (cluster.isMaster) {
+    console.log("Launching in multithreaded mode with " + opts.threads + " threads.");
     for (var i = 0; i < opts.threads; i += 1) {
         cluster.fork();
     }
