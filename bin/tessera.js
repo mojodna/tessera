@@ -32,11 +32,11 @@ var nomnom = require("nomnom")
       help: "Set interface to listen on",
       default: "0.0.0.0"
     },
-    multithreaded: {
+    multiprocess: {
       abbr: "m",
       flag: true,
       default: false,
-      help: "Start multiple threads"
+      help: "Start multiple processes"
     },
     processes: {
       abbr: "P",
@@ -86,7 +86,7 @@ if (opts.version) {
   return process.exit();
 } else if (!opts.uri && !opts.config) {
   return nomnom.print(nomnom.getUsage());
-} else if (opts.processes > 1) {
+} else if (opts.multiprocess) {
   var cluster = require("cluster");
 
   if (cluster.isMaster) {
