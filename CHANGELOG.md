@@ -1,5 +1,9 @@
 # Changes
 
+## v0.12.0 - 9/14/17
+
+* Multi-process mode (@JesseCrocker)
+
 ## v0.11.2 - 6/14/17
 
 * Update `tilelive-modules` for compatibility with `@mapbox`-scoped modules.
