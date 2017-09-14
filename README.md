@@ -122,6 +122,8 @@ Options:
    -c CONFIG, --config CONFIG          Provide a configuration file or directory
    -p PORT, --port PORT                Set the HTTP Port  [8080]
    -b HOST, --bind HOST                Set interface to listen on [0.0.0.0]
+   -m, --multiprocess                  Start multiple processes  [false]
+   -P, --processes                     Number of processes to start  [8]
    -r MODULE, --require MODULE         Require a specific tilelive module
    -S SIZE, --source-cache-size SIZE   Set the source cache size (in # of sources)  [10]
    -s SOCKET, --socket SOCKET          Listen on unix socket
@@ -230,6 +232,15 @@ will set the following variables:
 * `tile.sourceX = 25`
 * `tile.sourceY = 25`
 
+## Multiprocess mode
+By Default tessera runs in a single thread. For sources that are CPU intensive 
+to render, or when running on servers with large numbers of CPU cores there can
+be significant performance improvements from running in multiprocess mode. When
+multiprocess mode is enabled with the `--multiprocess` option multiple processes 
+will be started, with each process running a single thread, enabling many 
+requests to be served at once. The number of processes to be started defaults to 
+the number of CPU cores on the host, but can be configured with the 
+`--processes` option.
 
 ## Environment Variables
 
