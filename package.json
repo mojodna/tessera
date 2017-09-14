@@ -1,6 +1,6 @@
 {
   "name": "tessera",
-  "version": "0.11.2",
+  "version": "0.12.0",
   "description": "A tilelive-based tile server",
   "main": "lib/app.js",
   "bin": "bin/tessera.js",
