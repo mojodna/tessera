@@ -32,6 +32,17 @@ var nomnom = require("nomnom")
       help: "Set interface to listen on",
       default: "0.0.0.0"
     },
+    multiprocess: {
+      abbr: "m",
+      flag: true,
+      default: false,
+      help: "Start multiple processes"
+    },
+    processes: {
+      abbr: "P",
+      default: require('os').cpus().length,
+      help: "Number of processes to start"
+    },
     require: {
       abbr: "r",
       metavar: "MODULE",
@@ -71,13 +82,22 @@ var argv = (process.env.TESSERA_OPTS || "")
 
 var opts = nomnom.parse(argv);
 
-switch (true) {
-case opts.version:
+if (opts.version) {
   return process.exit();
-
-case !opts.uri && !opts.config:
+} else if (!opts.uri && !opts.config) {
   return nomnom.print(nomnom.getUsage());
+} else if (opts.multiprocess) {
+  var cluster = require("cluster");
 
-default:
+  if (cluster.isMaster) {
+    console.log("Launching in multiprocess mode with " + opts.processes + " workers.");
+
+    for (var i = 0; i < opts.processes; i++) {
+      cluster.fork();
+    }
+  } else {
+    return require("../server")(opts);
+  }
+} else {
   return require("../server")(opts);
 }
