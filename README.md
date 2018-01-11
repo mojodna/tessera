@@ -104,9 +104,7 @@ To proxy tiles with available
 tessera tilejson+http://a.tiles.mapbox.com/v3/mapbox.mapbox-streets-v4.json
 ```
 
-A TileJSON endpoint is available at
-[localhost:8080/index.json](http://localhost:8080/index.json) with various bits
-of metadata about the tiles being served.
+A [TileJSON](https://github.com/mapbox/tilejson-spec/tree/master/2.2.0) endpoint is available at /[PATH]/index.json (for instance, localhost:8080/index.json), containing metadata about the tiles being served.
 
 ## Configuration
 
