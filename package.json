@@ -14,19 +14,20 @@
     "prepublish": "npm install bower && bower install"
   },
   "dependencies": {
-    "@mapbox/abaculus": "^2.1.0",
+    "@mapbox/abaculus": "^3.0.0",
+    "@mapbox/sphericalmercator": "^1.0.2",
+    "@mapbox/tilelive": "^6.0.0",
+    "bower": "^1.8.4",
     "cachecache": "^1.0.1",
-    "clone": "^1.0.2",
+    "clone": "^2.1.1",
     "cors": "^2.5.2",
-    "debug": "^2.1.3",
+    "debug": "^3.1.0",
     "express": "^4.10.3",
     "handlebars": "^4.0.5",
     "morgan": "^1.5.0",
     "nomnom": "^1.8.1",
     "response-time": "^2.2.0",
-    "@mapbox/sphericalmercator": "^1.0.2",
-    "@mapbox/tilelive": "^5.3.3",
     "tilelive-cache": "^0.7.1",
-    "tilelive-modules": "^0.3.4"
+    "tilelive-modules": "^0.4.0"
   }
 }

@@ -1,5 +1,9 @@
 # Changes
 
+## v0.13.0 - 6/28/18
+
+* Upgrade dependencies, particularly `@mapbox/abaculus` to upgrade `mapnik`.
+
 ## v0.12.0 - 9/14/17
 
 * Multi-process mode (@JesseCrocker)
