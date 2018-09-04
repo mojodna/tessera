@@ -1,5 +1,9 @@
 # Changes
 
+## v0.13.1 - 9/4/18
+
+* Always claim `xyz` scheme (sources that are internally `tms` will be translated).
+
 ## v0.13.0 - 6/28/18
 
 * Upgrade dependencies, particularly `@mapbox/abaculus` to upgrade `mapnik`.
