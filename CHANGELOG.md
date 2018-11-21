@@ -1,5 +1,9 @@
 # Changes
 
+## v0.14.0 - 11/21/18
+
+* Remove static map generation to simplify dependencies.
+
 ## v0.13.1 - 9/4/18
 
 * Always claim `xyz` scheme (sources that are internally `tms` will be translated).

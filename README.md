@@ -39,6 +39,11 @@ _Note_: If you want to be able to preview vector tiles (MVT/PBF), you need these
 npm install -g tilelive-vector tilelive-xray
 ```
 
+_Note_: If you want to render static maps from an endpoint, you'll need to use
+`~0.13.1`, as static map functionality was removed in `v0.14.0` to simplify
+dependencies (see [#86](https://github.com/mojodna/tessera/issues/86) for more
+context).
+
 To serve up a [TileMill](https://www.mapbox.com/tilemill/) (or
 [Carto](https://github.com/mapbox/carto)) project using
 [tilelive-carto](https://github.com/mojodna/tilelive-carto):
