@@ -17,16 +17,16 @@
     "@mapbox/sphericalmercator": "^1.0.2",
     "@mapbox/tilelive": "^6.0.0",
     "bower": "^1.8.4",
-    "cachecache": "^1.0.1",
-    "clone": "^2.1.1",
-    "cors": "^2.5.2",
-    "debug": "^3.1.0",
-    "express": "^4.10.3",
-    "handlebars": "^4.0.5",
-    "morgan": "^1.5.0",
+    "cachecache": "^1.0.3",
+    "clone": "^2.1.2",
+    "cors": "^2.8.5",
+    "debug": "^3.2.6",
+    "express": "^4.16.4",
+    "handlebars": "^4.0.12",
+    "morgan": "^1.9.1",
     "nomnom": "^1.8.1",
     "response-time": "^2.2.0",
     "tilelive-cache": "^0.7.1",
-    "tilelive-modules": "^0.4.0"
+    "tilelive-modules": "^0.4.1"
   }
 }

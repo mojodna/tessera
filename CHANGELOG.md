@@ -1,5 +1,10 @@
 # Changes
 
+## v0.14.1 - 11/21/18
+
+* Upgrade dependencies, particularly `cachecache` (for CVE-2017-1611) and
+  `tilelive-modules` (for Tapalcatl 2 support).
+
 ## v0.14.0 - 11/21/18
 
 * Remove static map generation to simplify dependencies.
