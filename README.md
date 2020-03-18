@@ -29,7 +29,7 @@ To serve up an [MBTiles](https://www.mapbox.com/developers/mbtiles/) archive
 using [node-mbtiles](https://github.com/mapbox/node-mbtiles):
 
 ```bash
-npm install -g mbtiles
+npm install -g @mapbox/mbtiles
 tessera mbtiles://./whatever.mbtiles
 ```
 
