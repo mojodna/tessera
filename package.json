@@ -19,12 +19,12 @@
     "bower": "^1.8.12",
     "cachecache": "^1.0.3",
     "clone": "^2.1.2",
+    "commander": "^8.2.0",
     "cors": "^2.8.5",
     "debug": "^3.2.6",
     "express": "^4.16.4",
     "handlebars": "^4.0.12",
     "morgan": "^1.9.1",
-    "nomnom": "^1.8.1",
     "response-time": "^2.2.0",
     "tilelive-cache": "^0.7.1",
     "tilelive-modules": "^0.4.1"

@@ -1,5 +1,9 @@
 # Changes
 
+## v0.15.0 - 9/23/21
+
+* Replaced `nomnom` with `commander`.
+
 ## v0.14.2 - 9/23/21
 
 * Upgrade dependencies.
