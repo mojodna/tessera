@@ -1,5 +1,9 @@
 # Changes
 
+## v0.14.2 - 9/23/21
+
+* Upgrade dependencies.
+
 ## v0.14.1 - 11/21/18
 
 * Upgrade dependencies, particularly `cachecache` (for CVE-2017-1611) and
