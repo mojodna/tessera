@@ -2,97 +2,59 @@
 
 "use strict";
 
-var nomnom = require("nomnom")
-  .options({
-    uri: {
-      position: 0,
-      help: "tilelive URI to serve"
-    },
-    cacheSize: {
-      full: "cache-size",
-      abbr: "C",
-      metavar: "SIZE",
-      help: "Set the cache size (in MB)",
-      default: 10
-    },
-    config: {
-      abbr: "c",
-      metavar: "CONFIG",
-      help: "Provide a configuration file or directory"
-    },
-    port: {
-      abbr: "p",
-      metavar: "PORT",
-      help: "Set the HTTP Port",
-      default: 8080
-    },
-    bind: {
-      abbr: "b",
-      metavar: "HOST",
-      help: "Set interface to listen on",
-      default: "0.0.0.0"
-    },
-    multiprocess: {
-      abbr: "m",
-      flag: true,
-      default: false,
-      help: "Start multiple processes"
-    },
-    processes: {
-      abbr: "P",
-      default: require('os').cpus().length,
-      help: "Number of processes to start"
-    },
-    require: {
-      abbr: "r",
-      metavar: "MODULE",
-      help: "Require a specific tilelive module",
-      list: true
-    },
-    sourceCacheSize: {
-      full: "source-cache-size",
-      abbr: "S",
-      metavar: "SIZE",
-      help: "Set the source cache size (in # of sources)",
-      default: 10
-    },
-    socket: {
-      full: "socket",
-      abbr: "s",
-      metavar: "SOCKET",
-      help: "Listen on unix socket"
-    },
-    version: {
-      abbr: "v",
-      flag: true,
-      help: "Show version info",
-      callback: function() {
-        return "tessera v" + require("../package.json").version;
-      }
-    }
-  })
-  .help("A tilelive URI or configuration file is required.");
+const { program } = require("commander");
 
-var argv = (process.env.TESSERA_OPTS || "")
+program
+  .option("-C, --cache-size <SIZE>", "Set the cache size (in MB)", parseInt, 10)
+  .option("-c, --config <CONFIG>", "Provide a configuration file or directory")
+  .option("-p, --port <PORT>", "Set the HTTP port", parseInt, 8080)
+  .option("-b, --bind <HOST>", "Set the interface to listen on", "0.0.0.0")
+  .option("-m, --multiprocess", "Start multiple processes", false)
+  .option(
+    "-P, --processes <PROCESSES>",
+    "Number of processes to start",
+    parseInt,
+    require("os").cpus().length
+  )
+  .option(
+    "-r, --require <MODULE>",
+    "Require a specific tilelive module",
+    (value, previous) => previous.concat([value]),
+    []
+  )
+  .option(
+    "-S, --source-cache-size <SIZE>",
+    "Set the source cache size (in # of sources)",
+    parseInt,
+    10
+  )
+  .option("-s, --socket <SOCKET>", "Listen on a Unix socket")
+  .version(`tessera v${require("../package.json").version}`)
+  .argument("[uri]", "tilelive URI to serve")
+  .addHelpText("after", "\nA tilelive URI or configuration file is required.");
+
+const argv = (process.env.TESSERA_OPTS || "")
   .split(" ")
   .concat(process.argv.slice(2))
-  .filter(function(x) {
-    return !!x;
-  });
+  .filter((x) => !!x);
 
-var opts = nomnom.parse(argv);
+const opts = program.parse(argv, { from: "user" }).opts();
 
-if (opts.version) {
-  return process.exit();
-} else if (!opts.uri && !opts.config) {
-  return nomnom.print(nomnom.getUsage());
-} else if (opts.multiprocess) {
-  var cluster = require("cluster");
+if (!opts.config && program.args.length === 1) {
+  // compatibility with nomnom's argument handling
+  opts.uri = program.args[0];
+  opts._ = program.args;
+} else if (!opts.config) {
+  program.help();
+}
+
+if (opts.multiprocess) {
+  const cluster = require("cluster");
 
   if (cluster.isMaster) {
     console.log("Launching in multiprocess mode with " + opts.processes + " workers.");
 
-    for (var i = 0; i < opts.processes; i++) {
+    for (let i = 0; i < opts.processes; i++) {
       cluster.fork();
     }
   } else {
