@@ -1,5 +1,9 @@
 # Changes
 
+## v0.15.1 - 2/7/22
+
+* Fixed numeric option parsing (no more `NaN` values for `--port`).
+
 ## v0.15.0 - 9/23/21
 
 * Replaced `nomnom` with `commander`.
