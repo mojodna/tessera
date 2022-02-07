@@ -5,9 +5,9 @@
 const { program } = require("commander");
 
 program
-  .option("-C, --cache-size <SIZE>", "Set the cache size (in MB)", parseInt, 10)
+  .option("-C, --cache-size <SIZE>", "Set the cache size (in MB)", parseFloat, 10)
   .option("-c, --config <CONFIG>", "Provide a configuration file or directory")
-  .option("-p, --port <PORT>", "Set the HTTP port", parseInt, 8080)
+  .option("-p, --port <PORT>", "Set the HTTP port", parseFloat, 8080)
   .option("-b, --bind <HOST>", "Set the interface to listen on", "0.0.0.0")
   .option("-m, --multiprocess", "Start multiple processes", false)
   .option(
@@ -25,7 +25,7 @@ program
   .option(
     "-S, --source-cache-size <SIZE>",
     "Set the source cache size (in # of sources)",
-    parseInt,
+    parseFloat,
     10
   )
   .option("-s, --socket <SOCKET>", "Listen on a Unix socket")
