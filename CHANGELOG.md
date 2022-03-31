@@ -1,5 +1,9 @@
 # Changes
 
+## v0.15.3 - 3/31/22
+
+* Override `minimist` dependency.
+
 ## v0.15.2 - 2/7/22
 
 * Upgrade dependencies.
