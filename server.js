@@ -141,7 +141,7 @@ module.exports = function(opts, callback) {
       // allow the socket to be accessed by other users/groups
       fs.chmodSync(opts.socket, "1766");
     } else {
-      endpoint = "http://" + this.address().address + ':' + this.address().port;
+      endpoint = "http://" + server.address().address + ':' + server.address().port;
     }
     console.log("Listening at %s", endpoint);
 
