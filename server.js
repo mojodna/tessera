@@ -128,7 +128,7 @@ module.exports = function(opts, callback) {
   }
 
   var handler = process.env.SOCKET || opts.socket || process.env.PORT || opts.port;
-  var server = app.listen(handler, process.env.HOST || opts.bind, function(server) {
+  var server = app.listen(handler, process.env.HOST || opts.bind, function() {
     var endpoint;
     if (opts.socket) {
       endpoint = opts.socket;
