@@ -13,7 +13,7 @@ program
   .option(
     "-P, --processes <PROCESSES>",
     "Number of processes to start",
-    parseInt,
+    parseFloat,
     require("os").cpus().length
   )
   .option(
