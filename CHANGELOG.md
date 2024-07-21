@@ -1,5 +1,13 @@
 # Changes
 
+## v0.15.5 - 7/21/24
+
+* Fixed numeric option parsing for process count.
+
+## v0.15.4 - 2/7/24
+
+* Improved compatibility with Bun by avoiding undocumented behavior.
+
 ## v0.15.3 - 3/31/22
 
 * Override `minimist` dependency.
