@@ -224,6 +224,7 @@ option in the configuration file:
 ```
 
 This will make three additional values available for header templates:
+
 * `tile.sourceZoom`
 * `tile.sourceX`
 * `tile.sourceY`
@@ -246,6 +247,26 @@ started, with each process running a single thread, enabling many requests to be
 served at once. The number of processes to be started defaults to the number of
 CPU cores on the host, but can be configured with the `--processes` option.
 
+## Testing
+
+Run the test suite:
+
+```bash
+npm test
+```
+
+Run tests with coverage:
+
+```bash
+npm run test:coverage
+```
+
+Run tests in watch mode for development:
+
+```bash
+npm test -- --watch
+```
+
 ## Environment Variables
 
 * `PORT` - Port to bind to. Defaults to `8080`.
@@ -256,5 +277,5 @@ CPU cores on the host, but can be configured with the `--processes` option.
 * `SOCKET` - Unix socket to bind to. Optional.
 * `SOURCE_CACHE_SIZE` - Number of sources to cache (for
   [tilelive-cache](https://github.com/mojodna/tilelive-cache)). Defaults to 6.
-  *NOTE*: implicit retina versions count as an extra source.
+  _NOTE_: implicit retina versions count as an extra source.
 * `TESSERA_OPTS` - Additional command-line arguments.
