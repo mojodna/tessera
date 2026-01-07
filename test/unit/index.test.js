@@ -1,12 +1,19 @@
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
+
 const url = require("url");
 const tessera = require("../../lib/index");
-const { MockPNGSource, MockErroringSource } = require("../fixtures/mock-sources");
+const {
+  MockPNGSource,
+  MockErroringSource,
+} = require("../fixtures/mock-sources");
 
 describe("tessera.getInfo", () => {
   it("returns error when source.getInfo fails", () => {
     return new Promise((resolve) => {
-      const uri = url.parse("mock-erroring://test?errorOn=getInfo&message=Source%20failed", true);
+      const uri = url.parse(
+        "mock-erroring://test?errorOn=getInfo&message=Source%20failed",
+        true,
+      );
       new MockErroringSource(uri, (err, source) => {
         expect(err).toBeNull();
         tessera.getInfo(source, (err, info) => {
@@ -25,13 +32,13 @@ describe("tessera.getInfo", () => {
       const minimalSource = {
         getInfo: (callback) => {
           setImmediate(() => callback(null, {}));
-        }
+        },
       };
 
       tessera.getInfo(minimalSource, (err, info) => {
         expect(err).toBeNull();
         expect(info.name).toBe("Untitled");
-        expect(info.center).toEqual([-122.4440, 37.7908, 12]);
+        expect(info.center).toEqual([-122.444, 37.7908, 12]);
         expect(info.bounds).toEqual([-180, -85.0511, 180, 85.0511]);
         expect(info.format).toBe("png");
         expect(info.minzoom).toBe(0);
@@ -46,11 +53,13 @@ describe("tessera.getInfo", () => {
       // Create a source with vector_layers but format: "png"
       const vectorSource = {
         getInfo: (callback) => {
-          setImmediate(() => callback(null, {
-            format: "png",
-            vector_layers: [{ id: "test" }]
-          }));
-        }
+          setImmediate(() =>
+            callback(null, {
+              format: "png",
+              vector_layers: [{ id: "test" }],
+            }),
+          );
+        },
       };
 
       tessera.getInfo(vectorSource, (err, info) => {
@@ -84,7 +93,7 @@ describe("tessera.getInfo", () => {
       const negativeZoomSource = {
         getInfo: (callback) => {
           setImmediate(() => callback(null, { minzoom: -5 }));
-        }
+        },
       };
 
       tessera.getInfo(negativeZoomSource, (err, info) => {

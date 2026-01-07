@@ -1,5 +1,6 @@
-import { describe, it, expect } from "vitest";
 import request from "supertest";
+import { describe, expect, it } from "vitest";
+
 const { createApp } = require("./app-factory");
 
 describe("App factory", () => {
@@ -12,8 +13,8 @@ describe("App factory", () => {
   it("creates app from options object", async () => {
     const app = createApp("mock-png://test", {
       headers: {
-        "X-Custom": "test-value"
-      }
+        "X-Custom": "test-value",
+      },
     });
     const res = await request(app).get("/index.json");
     expect(res.status).toBe(200);

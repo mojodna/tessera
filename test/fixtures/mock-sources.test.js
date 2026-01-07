@@ -1,6 +1,13 @@
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
+
 const url = require("url");
-const { MockPNGSource, MockPBFSource, MockErrorSource, MockNullSource, MockErroringSource } = require("./mock-sources");
+const {
+  MockPNGSource,
+  MockPBFSource,
+  MockErrorSource,
+  MockNullSource,
+  MockErroringSource,
+} = require("./mock-sources");
 
 describe("MockPNGSource", () => {
   it("returns PNG tile data", () => {
@@ -130,7 +137,10 @@ describe("MockErroringSource", () => {
 
   it("supports custom error messages", () => {
     return new Promise((resolve) => {
-      const uri = url.parse("mock-erroring://test?errorOn=getInfo&message=Custom%20getInfo%20error", true);
+      const uri = url.parse(
+        "mock-erroring://test?errorOn=getInfo&message=Custom%20getInfo%20error",
+        true,
+      );
       new MockErroringSource(uri, (err, source) => {
         expect(err).toBeNull();
         source.getInfo((err, info) => {

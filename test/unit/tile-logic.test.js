@@ -8,7 +8,7 @@ describe("Tile coordinate parsing", () => {
       "X-Parsed",
       "{{tile.zoom}}/{{tile.x}}/{{tile.y}}",
       "/10/512/384.png",
-      "10/512/384"
+      "10/512/384",
     );
   });
 
@@ -18,7 +18,7 @@ describe("Tile coordinate parsing", () => {
       "X-Scale",
       "{{tile.scale}}",
       "/10/512/384@2x.png",
-      "2"
+      "2",
     );
   });
 
@@ -28,7 +28,7 @@ describe("Tile coordinate parsing", () => {
       "X-Scale",
       "{{tile.scale}}",
       "/10/512/384.png",
-      "1"
+      "1",
     );
   });
 
@@ -38,7 +38,7 @@ describe("Tile coordinate parsing", () => {
       "X-Format",
       "{{tile.format}}",
       "/10/512/384.pbf",
-      "pbf"
+      "pbf",
     );
   });
 });
@@ -50,7 +50,7 @@ describe("Tile parsing edge cases", () => {
       "X-Coords",
       "{{tile.zoom}}/{{tile.x}}/{{tile.y}}",
       "/0/0/0.png",
-      "0/0/0"
+      "0/0/0",
     );
   });
 
@@ -60,7 +60,7 @@ describe("Tile parsing edge cases", () => {
       "X-Coords",
       "{{tile.x}}/{{tile.y}}",
       "/10/1023/1023.png",
-      "1023/1023"
+      "1023/1023",
     );
   });
 
@@ -70,7 +70,7 @@ describe("Tile parsing edge cases", () => {
       "X-Zoom",
       "{{tile.zoom}}",
       "/20/524288/524288.png",
-      "20"
+      "20",
     );
   });
 
@@ -80,7 +80,7 @@ describe("Tile parsing edge cases", () => {
       "X-Scale",
       "{{tile.scale}}",
       "/10/512/384@3x.png",
-      "3"
+      "3",
     );
   });
 
@@ -90,7 +90,7 @@ describe("Tile parsing edge cases", () => {
       "X-Coords",
       "{{tile.x}}/{{tile.y}}",
       "/20/1048575/1048575.png",
-      "1048575/1048575"
+      "1048575/1048575",
     );
   });
 });

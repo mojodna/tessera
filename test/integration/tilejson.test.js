@@ -1,5 +1,6 @@
-import { describe, it, expect } from "vitest";
 import request from "supertest";
+import { describe, expect, it } from "vitest";
+
 const { createApp } = require("../helpers/app-factory");
 
 async function getTileJSON(uri, options) {
@@ -63,7 +64,9 @@ describe("TileJSON endpoint", () => {
     });
 
     it("returns 500 when source.getInfo fails during TileJSON request", async () => {
-      const app = createApp("mock-erroring://test?errorOn=getInfo&message=Metadata%20unavailable");
+      const app = createApp(
+        "mock-erroring://test?errorOn=getInfo&message=Metadata%20unavailable",
+      );
       const res = await request(app).get("/index.json");
 
       expect(res.status).toBe(500);

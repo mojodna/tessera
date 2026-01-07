@@ -1,5 +1,6 @@
-import { describe, it, expect } from "vitest";
 import request from "supertest";
+import { describe, expect, it } from "vitest";
+
 const { createApp } = require("../helpers/app-factory");
 
 describe("Tile endpoints", () => {
@@ -52,7 +53,7 @@ describe("Tile endpoints", () => {
       png: createApp("mock-png://test"),
       bounded: createApp("mock-png://test?bounds=-10,-10,10,10"),
       minZoom: createApp("mock-png://test?minzoom=5"),
-      maxZoom: createApp("mock-png://test?maxzoom=10")
+      maxZoom: createApp("mock-png://test?maxzoom=10"),
     };
 
     it("returns 404 when requesting wrong format", async () => {
@@ -79,7 +80,7 @@ describe("Tile endpoints", () => {
   describe("Custom tile paths", () => {
     it("serves tiles at custom path pattern", async () => {
       const app = createApp("mock-png://test", {
-        tilePath: "/tiles/{z}/{x}/{y}.{format}"
+        tilePath: "/tiles/{z}/{x}/{y}.{format}",
       });
       const res = await request(app).get("/tiles/0/0/0.png");
 
@@ -89,7 +90,7 @@ describe("Tile endpoints", () => {
 
     it("custom tilePath appears in TileJSON", async () => {
       const app = createApp("mock-png://test", {
-        tilePath: "/custom/{z}/{x}/{y}.{format}"
+        tilePath: "/custom/{z}/{x}/{y}.{format}",
       });
       const res = await request(app).get("/index.json");
 
@@ -107,7 +108,9 @@ describe("Tile endpoints", () => {
     });
 
     it("returns 500 when source.getInfo fails during tile request", async () => {
-      const app = createApp("mock-erroring://test?errorOn=getInfo&message=Metadata%20unavailable");
+      const app = createApp(
+        "mock-erroring://test?errorOn=getInfo&message=Metadata%20unavailable",
+      );
       const res = await request(app).get("/0/0/0.png");
 
       expect(res.status).toBe(500);

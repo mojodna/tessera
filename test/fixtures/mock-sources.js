@@ -5,7 +5,7 @@ const zlib = require("zlib");
 // 1x1 transparent PNG
 const TINY_PNG = Buffer.from(
   "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==",
-  "base64"
+  "base64",
 );
 
 // Minimal valid MVT (empty vector tile)
@@ -13,7 +13,7 @@ const EMPTY_MVT = zlib.gzipSync(Buffer.from([0x1a, 0x00]));
 
 // Web Mercator bounds
 const WEB_MERCATOR_BOUNDS = [-180, -85.0511, 180, 85.0511];
-const DEFAULT_CENTER = [-122.4440, 37.7908, 12];
+const DEFAULT_CENTER = [-122.444, 37.7908, 12];
 
 function parseCommonOptions(options, defaults) {
   return {
@@ -21,7 +21,7 @@ function parseCommonOptions(options, defaults) {
     maxzoom: options.maxzoom ? parseInt(options.maxzoom) : defaults.maxzoom,
     bounds: options.bounds
       ? options.bounds.split(",").map(parseFloat)
-      : WEB_MERCATOR_BOUNDS
+      : WEB_MERCATOR_BOUNDS,
   };
 }
 
@@ -33,12 +33,15 @@ class MockPNGSource {
   }
 
   getInfo(callback) {
-    const commonOpts = parseCommonOptions(this.options, { minzoom: 0, maxzoom: 20 });
+    const commonOpts = parseCommonOptions(this.options, {
+      minzoom: 0,
+      maxzoom: 20,
+    });
     const info = {
       format: "png",
       ...commonOpts,
       name: this.options.name || "Mock PNG Source",
-      center: DEFAULT_CENTER
+      center: DEFAULT_CENTER,
     };
     setImmediate(() => callback(null, info));
   }
@@ -47,8 +50,8 @@ class MockPNGSource {
     setImmediate(() =>
       callback(null, TINY_PNG, {
         "Content-Type": "image/png",
-        "Cache-Control": "public, max-age=3600"
-      })
+        "Cache-Control": "public, max-age=3600",
+      }),
     );
   }
 }
@@ -65,7 +68,10 @@ class MockPBFSource {
   }
 
   getInfo(callback) {
-    const commonOpts = parseCommonOptions(this.options, { minzoom: 0, maxzoom: 14 });
+    const commonOpts = parseCommonOptions(this.options, {
+      minzoom: 0,
+      maxzoom: 14,
+    });
     const info = {
       format: "pbf",
       ...commonOpts,
@@ -75,9 +81,9 @@ class MockPBFSource {
         {
           id: "test_layer",
           description: "Test layer",
-          fields: {}
-        }
-      ]
+          fields: {},
+        },
+      ],
     };
     setImmediate(() => callback(null, info));
   }
@@ -86,8 +92,8 @@ class MockPBFSource {
     setImmediate(() =>
       callback(null, EMPTY_MVT, {
         "Content-Type": "application/x-protobuf",
-        "Content-Encoding": "gzip"
-      })
+        "Content-Encoding": "gzip",
+      }),
     );
   }
 }
@@ -105,12 +111,15 @@ class MockErrorSource {
   }
 
   getInfo(callback) {
-    const commonOpts = parseCommonOptions(this.options, { minzoom: 0, maxzoom: 20 });
+    const commonOpts = parseCommonOptions(this.options, {
+      minzoom: 0,
+      maxzoom: 20,
+    });
     const info = {
       format: "png",
       ...commonOpts,
       name: "Mock Error Source",
-      center: DEFAULT_CENTER
+      center: DEFAULT_CENTER,
     };
     setImmediate(() => callback(null, info));
   }
@@ -132,12 +141,15 @@ class MockNullSource {
   }
 
   getInfo(callback) {
-    const commonOpts = parseCommonOptions(this.options, { minzoom: 0, maxzoom: 20 });
+    const commonOpts = parseCommonOptions(this.options, {
+      minzoom: 0,
+      maxzoom: 20,
+    });
     const info = {
       format: "png",
       ...commonOpts,
       name: "Mock Null Source",
-      center: DEFAULT_CENTER
+      center: DEFAULT_CENTER,
     };
     setImmediate(() => callback(null, info));
   }
@@ -166,12 +178,15 @@ class MockErroringSource {
       return;
     }
 
-    const commonOpts = parseCommonOptions(this.options, { minzoom: 0, maxzoom: 20 });
+    const commonOpts = parseCommonOptions(this.options, {
+      minzoom: 0,
+      maxzoom: 20,
+    });
     const info = {
       format: "png",
       ...commonOpts,
       name: "Mock Erroring Source",
-      center: DEFAULT_CENTER
+      center: DEFAULT_CENTER,
     };
     setImmediate(() => callback(null, info));
   }
@@ -185,8 +200,8 @@ class MockErroringSource {
     setImmediate(() =>
       callback(null, TINY_PNG, {
         "Content-Type": "image/png",
-        "Cache-Control": "public, max-age=3600"
-      })
+        "Cache-Control": "public, max-age=3600",
+      }),
     );
   }
 }
@@ -195,4 +210,10 @@ MockErroringSource.registerProtocols = (tilelive) => {
   tilelive.protocols["mock-erroring:"] = MockErroringSource;
 };
 
-module.exports = { MockPNGSource, MockPBFSource, MockErrorSource, MockNullSource, MockErroringSource };
+module.exports = {
+  MockPNGSource,
+  MockPBFSource,
+  MockErrorSource,
+  MockNullSource,
+  MockErroringSource,
+};

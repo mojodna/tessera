@@ -1,12 +1,19 @@
-import { expect } from "vitest";
 import request from "supertest";
+import { expect } from "vitest";
+
 const { createApp } = require("./app-factory");
 
-export async function testHeaderTemplate(headerName, templateValue, tilePath, expectedValue, expectedStatus = 200) {
+export async function testHeaderTemplate(
+  headerName,
+  templateValue,
+  tilePath,
+  expectedValue,
+  expectedStatus = 200,
+) {
   const app = createApp("mock-png://test", {
     headers: {
-      [headerName]: templateValue
-    }
+      [headerName]: templateValue,
+    },
   });
   const res = await request(app).get(tilePath);
 
@@ -19,8 +26,8 @@ export async function testSourceMaxZoom(tilePath, expectedHeaders) {
     sourceMaxZoom: 10,
     headers: {
       "X-Source-Zoom": "{{tile.sourceZoom}}",
-      "X-Source-Coords": "{{tile.sourceX}},{{tile.sourceY}}"
-    }
+      "X-Source-Coords": "{{tile.sourceX}},{{tile.sourceY}}",
+    },
   });
   const res = await request(app).get(tilePath);
 
@@ -30,11 +37,18 @@ export async function testSourceMaxZoom(tilePath, expectedHeaders) {
   });
 }
 
-export async function testTileParsing(sourceUri, headerName, templateValue, tilePath, expectedValue, expectedStatus = 200) {
+export async function testTileParsing(
+  sourceUri,
+  headerName,
+  templateValue,
+  tilePath,
+  expectedValue,
+  expectedStatus = 200,
+) {
   const app = createApp(sourceUri, {
     headers: {
-      [headerName]: templateValue
-    }
+      [headerName]: templateValue,
+    },
   });
   const res = await request(app).get(tilePath);
 

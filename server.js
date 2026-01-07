@@ -2,30 +2,31 @@
 "use strict";
 
 // increase the libuv threadpool size to 1.5x the number of logical CPUs.
-process.env.UV_THREADPOOL_SIZE = process.env.UV_THREADPOOL_SIZE || Math.ceil(Math.max(4, require('os').cpus().length * 1.5));
+process.env.UV_THREADPOOL_SIZE =
+  process.env.UV_THREADPOOL_SIZE ||
+  Math.ceil(Math.max(4, require("node:os").cpus().length * 1.5));
 
-var fs = require("fs"),
-    path = require("path");
+const fs = require("node:fs");
+const path = require("node:path");
 
-var cors = require("cors"),
-    debug = require("debug"),
-    express = require("express"),
-    morgan = require("morgan"),
-    responseTime = require("response-time");
+const cors = require("cors");
+const express = require("express");
+const morgan = require("morgan");
+const responseTime = require("response-time");
 
-var serve = require("./lib/app"),
-    tessera = require("./lib/index");
+const serve = require("./lib/app");
+const tessera = require("./lib/index");
 
-debug = debug("tessera");
+const debug = require("debug")("tessera");
 
-module.exports = function(opts, callback) {
-  var app = express().disable("x-powered-by"),
-      tilelive = require("tilelive-cache")(require("@mapbox/tilelive"), {
-        size: process.env.CACHE_SIZE || opts.cacheSize,
-        sources: process.env.SOURCE_CACHE_SIZE || opts.sourceCacheSize
-      });
+module.exports = (opts, callback) => {
+  const app = express().disable("x-powered-by");
+  const tilelive = require("tilelive-cache")(require("@mapbox/tilelive"), {
+    size: process.env.CACHE_SIZE || opts.cacheSize,
+    sources: process.env.SOURCE_CACHE_SIZE || opts.sourceCacheSize,
+  });
 
-  callback = callback || function() {};
+  callback = callback || (() => {});
 
   // load and register tilelive modules
   require("tilelive-modules/loader")(tilelive, opts);
@@ -42,42 +43,44 @@ module.exports = function(opts, callback) {
     app.use(express.static(path.join(__dirname, "bower_components")));
     app.use(serve(tilelive, opts.uri));
 
-    tilelive.load(opts.uri, function(err, src) {
+    tilelive.load(opts.uri, (err, src) => {
       if (err) {
         throw err;
       }
 
-      return tessera.getInfo(src, function(err, info) {
+      return tessera.getInfo(src, (err, info) => {
         if (err) {
           debug(err.stack);
           return;
         }
 
         if (info.format === "pbf") {
-          app.use("/_", serve(tilelive, "xray+" + opts.uri));
+          app.use("/_", serve(tilelive, `xray+${opts.uri}`));
           app.use("/_", express.static(path.join(__dirname, "public")));
-          app.use("/_", express.static(path.join(__dirname, "bower_components")));
+          app.use(
+            "/_",
+            express.static(path.join(__dirname, "bower_components")),
+          );
         }
       });
     });
   }
 
   if (opts.config) {
-    var configPath = path.resolve(opts.config),
-        stats = fs.statSync(configPath),
-        config = {};
+    const configPath = path.resolve(opts.config);
+    const stats = fs.statSync(configPath);
+    let config = {};
 
     if (stats.isFile()) {
       config = require(configPath);
     } else if (stats.isDirectory()) {
-      config = fs.readdirSync(configPath)
-        .filter(function(filename) {
-          return path.extname(filename) === ".json";
-        })
-        .reduce(function(config, filename) {
-          var localConfig = require(path.join(configPath, filename));
+      config = fs
+        .readdirSync(configPath)
+        .filter((filename) => path.extname(filename) === ".json")
+        .reduce((config, filename) => {
+          const localConfig = require(path.join(configPath, filename));
 
-          return Object.keys(localConfig).reduce(function(config, k) {
+          return Object.keys(localConfig).reduce((config, k) => {
             config[k] = localConfig[k];
 
             return config;
@@ -85,7 +88,7 @@ module.exports = function(opts, callback) {
         }, config);
     }
 
-    Object.keys(config).forEach(function(prefix) {
+    Object.keys(config).forEach((prefix) => {
       if (config[prefix].timing !== false) {
         app.use(prefix, responseTime());
       }
@@ -99,37 +102,47 @@ module.exports = function(opts, callback) {
       app.use(prefix, serve(tilelive, config[prefix]));
 
       // config[prefix] is a string
-      var source = config[prefix];
+      let source = config[prefix];
 
       if (source.source != null) {
         // actually, it's an object
         source = source.source;
       }
 
-      tilelive.load(source, function(err, src) {
+      tilelive.load(source, (err, src) => {
         if (err) {
           throw err;
         }
 
-        return tessera.getInfo(src, function(err, info) {
+        return tessera.getInfo(src, (err, info) => {
           if (err) {
             debug(err.stack);
             return;
           }
 
           if (info.format === "pbf") {
-            app.use(prefix + "/_", serve(tilelive, "xray+" + config[prefix].source));
-            app.use(prefix + "/_", express.static(path.join(__dirname, "public")));
-            app.use(prefix + "/_", express.static(path.join(__dirname, "bower_components")));
+            app.use(
+              `${prefix}/_`,
+              serve(tilelive, `xray+${config[prefix].source}`),
+            );
+            app.use(
+              `${prefix}/_`,
+              express.static(path.join(__dirname, "public")),
+            );
+            app.use(
+              `${prefix}/_`,
+              express.static(path.join(__dirname, "bower_components")),
+            );
           }
         });
       });
     });
   }
 
-  var handler = process.env.SOCKET || opts.socket || process.env.PORT || opts.port;
-  var server = app.listen(handler, process.env.HOST || opts.bind, function() {
-    var endpoint;
+  const handler =
+    process.env.SOCKET || opts.socket || process.env.PORT || opts.port;
+  const server = app.listen(handler, process.env.HOST || opts.bind, () => {
+    let endpoint;
     if (opts.socket) {
       endpoint = opts.socket;
 
@@ -141,15 +154,16 @@ module.exports = function(opts, callback) {
       // allow the socket to be accessed by other users/groups
       fs.chmodSync(opts.socket, "1766");
     } else {
-      endpoint = "http://" + server.address().address + ':' + server.address().port;
+      const addr = server.address();
+      endpoint = `http://${addr.address}:${addr.port}`;
     }
     console.log("Listening at %s", endpoint);
 
     return callback();
   });
 
-  process.on('SIGINT', function () {
-    console.warn('Caught SIGINT, terminating');
+  process.on("SIGINT", () => {
+    console.warn("Caught SIGINT, terminating");
     server.close();
     process.exit();
   });
