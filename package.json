@@ -24,7 +24,7 @@
     "commander": "^14.0.2",
     "cors": "^2.8.5",
     "debug": "^4.4.3",
-    "express": "^4.22.1",
+    "express": "^5.2.1",
     "handlebars": "^4.0.12",
     "morgan": "^1.10.0",
     "response-time": "^2.3.2",
