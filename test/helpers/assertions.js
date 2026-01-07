@@ -1,5 +1,6 @@
-import { expect } from "vitest";
 import request from "supertest";
+import { expect } from "vitest";
+
 const { createApp } = require("./app-factory");
 
 async function expectNotFound(uri, path) {
