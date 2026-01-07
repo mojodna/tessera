@@ -3,6 +3,7 @@
 ## v0.16.0
 
 * Added tests.
+* Updated dependencies (commander, debug).
 
 ## v0.15.5 - 7/21/24
 
