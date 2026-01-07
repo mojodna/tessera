@@ -16,7 +16,7 @@
     "test:coverage": "vitest --run --coverage"
   },
   "dependencies": {
-    "@mapbox/sphericalmercator": "^1.2.0",
+    "@mapbox/sphericalmercator": "^2.0.2",
     "@mapbox/tilelive": "^6.1.0",
     "bower": "^1.8.14",
     "cachecache": "^1.0.3",

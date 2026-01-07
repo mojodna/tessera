@@ -4,6 +4,7 @@
 
 * Added tests.
 * Updated dependencies (commander, debug).
+* Updated @mapbox/sphericalmercator to v2.
 
 ## v0.15.5 - 7/21/24
 
