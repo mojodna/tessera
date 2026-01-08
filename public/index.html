@@ -1,13 +1,11 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" />
-<link rel="stylesheet" href="leaflet/dist/leaflet.css" />
-<script src="leaflet/dist/leaflet.js"></script>
-<script src="zepto/zepto.min.js"></script>
-<script src="leaflet-hash/leaflet-hash.js"></script>
-<script src="js/l.control.geosearch.js"></script>
-<script src="js/l.geosearch.provider.nominatim.js"></script>
-<link rel="stylesheet" href="css/l.geosearch.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1/dist/leaflet.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet-geosearch@4/assets/css/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-hash@0/leaflet-hash.js"></script>
+<script src="https://unpkg.com/leaflet-geosearch@4/dist/bundle.min.js"></script>
 <style type="text/css">
 body, #map {
   height: 100%;
@@ -26,58 +24,63 @@ body, #map {
       keyboardPanOffset: 256
   });
 
-  $.getJSON("index.json", function(data) {
-    // provide a default location in the hash, not the L.map (since that will
-    // load before L.Hash takes control)
-    if (!location.hash) {
-      if (data.center) {
-        location.hash = "#" + data.center.reverse().join("/");
-      } else {
-        location.hash = "#13/37.8/-122.4";
+  fetch("index.json")
+    .then((response) => response.json())
+    .then((data) => {
+      // provide a default location in the hash, not the L.map (since that will
+      // load before L.Hash takes control)
+      if (!location.hash) {
+        if (data.center) {
+          location.hash = `#${data.center.reverse().join("/")}`;
+        } else {
+          location.hash = "#13/37.8/-122.4";
+        }
       }
-    }
 
-    new L.Hash(map);
-    new L.Control.GeoSearch({
-      provider: new L.GeoSearch.Provider.Nominatim(),
-      showMarker: false
-    }).addTo(map);
+      new L.Hash(map);
 
-    var options = {
-      minZoom: data.minzoom || 0,
-      maxZoom: data.maxzoom || Infinity
-    };
+      var search = new GeoSearch.GeoSearchControl({
+        provider: new GeoSearch.OpenStreetMapProvider(),
+        showMarker: false,
+        style: 'bar'
+      });
+      map.addControl(search);
 
-    var provider = data.tiles.pop();
+      var options = {
+        minZoom: data.minzoom || 0,
+        maxZoom: data.maxzoom || Infinity
+      };
 
-    if (data.format === "pbf") {
-      provider = provider.replace(/(\/{z})/, "/_$1").replace("pbf", "png");
-    }
+      var provider = data.tiles.pop();
 
-    function getParameterByName(name) {
-        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-            results = regex.exec(location.search);
-        return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-    }
+      if (data.format === "pbf") {
+        provider = provider.replace(/(\/{z})/, "/_$1").replace("pbf", "png");
+      }
 
-    var mediaQuery = "(-webkit-min-device-pixel-ratio: 1.5),\
-                      (min--moz-device-pixel-ratio: 1.5),\
-                      (-o-min-device-pixel-ratio: 3/2),\
-                      (min-resolution: 1.5dppx)";
+      function getParameterByName(name) {
+          name = name.replace(/[[]/, "\\[").replace(/[\]]/, "\\]");
+          var regex = new RegExp(`[\\?&]${name}=([^&#]*)`),
+              results = regex.exec(location.search);
+          return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+      }
 
-    if (getParameterByName("retina") !== "false" &&
-        (getParameterByName("retina") ||
-         window.devicePixelRatio > 1 ||
-         (window.matchMedia && window.matchMedia(mediaQuery).matches))) {
-      // TODO figure out a reliable way of determining whether retina is
-      // supported from the TileJSON
-      // replace the last "." with "@2x."
-      provider = provider.replace(/\.(?!.*\.)/, "@2x.");
-    }
+      var mediaQuery = "(-webkit-min-device-pixel-ratio: 1.5),\
+                        (min--moz-device-pixel-ratio: 1.5),\
+                        (-o-min-device-pixel-ratio: 3/2),\
+                        (min-resolution: 1.5dppx)";
 
-    L.tileLayer(provider, options).addTo(map);
-  });
+      if (getParameterByName("retina") !== "false" &&
+          (getParameterByName("retina") ||
+           window.devicePixelRatio > 1 ||
+           window.matchMedia?.(mediaQuery).matches)) {
+        // TODO figure out a reliable way of determining whether retina is
+        // supported from the TileJSON
+        // replace the last "." with "@2x."
+        provider = provider.replace(/\.(?!.*\.)/, "@2x.");
+      }
+
+      L.tileLayer(provider, options).addTo(map);
+    });
 </script>
 </body>
 </html>

@@ -40,7 +40,6 @@ module.exports = (opts, callback) => {
     app.use(responseTime());
     app.use(cors());
     app.use(express.static(path.join(__dirname, "public")));
-    app.use(express.static(path.join(__dirname, "bower_components")));
     app.use(serve(tilelive, opts.uri));
 
     tilelive.load(opts.uri, (err, src) => {
@@ -57,10 +56,6 @@ module.exports = (opts, callback) => {
         if (info.format === "pbf") {
           app.use("/_", serve(tilelive, `xray+${opts.uri}`));
           app.use("/_", express.static(path.join(__dirname, "public")));
-          app.use(
-            "/_",
-            express.static(path.join(__dirname, "bower_components")),
-          );
         }
       });
     });
@@ -98,7 +93,6 @@ module.exports = (opts, callback) => {
       }
 
       app.use(prefix, express.static(path.join(__dirname, "public")));
-      app.use(prefix, express.static(path.join(__dirname, "bower_components")));
       app.use(prefix, serve(tilelive, config[prefix]));
 
       // config[prefix] is a string
@@ -128,10 +122,6 @@ module.exports = (opts, callback) => {
             app.use(
               `${prefix}/_`,
               express.static(path.join(__dirname, "public")),
-            );
-            app.use(
-              `${prefix}/_`,
-              express.static(path.join(__dirname, "bower_components")),
             );
           }
         });
