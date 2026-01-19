@@ -1,5 +1,9 @@
 # Changes
 
+## v0.16.0
+
+* Added tests.
+
 ## v0.15.5 - 7/21/24
 
 * Fixed numeric option parsing for process count.

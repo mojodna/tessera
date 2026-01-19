@@ -11,7 +11,9 @@
     "url": "https://github.com/mojodna/tessera.git"
   },
   "scripts": {
-    "prepublish": "npm install bower && bower install"
+    "prepublish": "npm install bower && bower install",
+    "test": "vitest --run",
+    "test:coverage": "vitest --run --coverage"
   },
   "dependencies": {
     "@mapbox/sphericalmercator": "^1.2.0",
@@ -33,5 +35,10 @@
     "@mapbox/tilelive": {
       "minimist": "1.2.6"
     }
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "^4.0.17",
+    "supertest": "^7.0.0",
+    "vitest": "^4.0.17"
   }
 }
